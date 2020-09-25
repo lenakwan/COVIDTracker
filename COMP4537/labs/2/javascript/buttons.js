@@ -1,17 +1,13 @@
 
 function onClick(){
     let content = this.innerHTML;
-    console.log(content + " was clicked");
+    console.log('Button ' + content + " was clicked");
     alert(content);
 }
-function createButton(){
-    let userInput = prompt("How many buttons would you like to create?");
-    while (userInput < 0 || userInput >26){
-        userInput = prompt("Enter a valid input. The English Alphabet has 26 characters.");
-    }
+function generateButtons(n){
     let buttonDiv = document.getElementById("buttonDiv");
     let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-    for(i = 0; i< userInput;i++){
+    for(i = 0; i< n;i++){
         if(i == alphabet.length/2){
             let spacing = document.createElement("BR"); 
             buttonDiv.appendChild(spacing);
@@ -52,14 +48,13 @@ class Recipe {
     }
 }
 
-// function createRecipe(){
-//     console.log("Unable to add recipe, invalid parameters.");
-//     newRecipe = new Recipe(title, serving, ingredients);
-    
-// }
 
+let userInput = prompt("How many buttons would you like to create?");
+while (userInput < 0 || userInput >26){
+    userInput = prompt("Enter a valid input. The English Alphabet has 26 characters.");
+}
 
-createButton();
+generateButtons(userInput);
 
 let newRecipe = new Recipe("Ramen", 1, ["noodles", "katsuoboshi", "menma", "sliced pork", "egg", "scallions"]);
 newRecipe.print();
