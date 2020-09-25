@@ -1,0 +1,60 @@
+body {
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-color: #616E7C;
+   }
+
+#left{
+    background-color: #7B8794;opacity: 0.9;
+    border-radius: 25px;
+    padding: 20px;
+    width: 45%;
+    color: #323F48;
+    float: left;
+    position: relative;
+}
+#Right{
+    background-color: #7B8794;opacity: 0.9;
+    border-radius: 25px;
+    padding: 20px;
+    width: 45%;
+    float: right;
+    color: #323F48
+    position: relative;
+}
+#Box{
+    padding-left:10px;
+    margin: auto;
+    position: relative;
+    top: 15%;
+    width: 80%;
+    height: 60%;
+    padding: 20px;
+    contain:strict;
+}
+#Bottom{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+
+}
+#Quiz{
+    position:absolute;
+    background-color: #7B8794;opacity: 0.9;
+    border-radius: 25px;
+    padding: 20px;
+    height: 105%;
+    width: 45%;
+    top: 5%;
+    left: 25%;
+    padding: 20px;
+    contain:strict;
+}
+#Hidden{
+    display: none;
+}
+#var{
+    color: red;
+}
+#console{
+    color: blue;
+}

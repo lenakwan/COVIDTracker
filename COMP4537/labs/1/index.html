@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../stylesheet.css">
+</head>
+<body>
+  <div id=quiz>
+    <h1>Example of Hard-Coded Quiz</h1>
+    <form action="/action_page.php">
+        <p>1) How should you import an external JavaScript and execute it only after everything else is loaded?</p>
+        <input type="radio" name="q1" value="q1a">
+        <label for="q1a">script src="script.js" mode= "noblock"</label><br>
+        <input type="radio"  name="q1" value="q1b">
+        <label for="q1b">script src="script.js"</label><br>
+        <input type="radio"  name="q1" value="q1c">
+        <label for="q1c">script async src="script.js"</label><br>
+        <input type="radio"  name="q1" value="q1correct">
+        <label for="q1correct">script src="script.js" defer</label><br>
+        <br/>  
+      
+        <p>2) <span id = "var">var</span> a = 27, b = "18", sum = a + b; <br/>What displays with <span id = "console">console</span>.log(++x);</p>
+        <input type="radio" name="q2" value="q2a">
+        <label for="q2a">27"18"</label><br>
+        <input type="radio"  name="q2" value="q2correct">
+        <label for="q2correct">2718</label><br>
+        <input type="radio"  name="q2" value="q2c">
+        <label for="q2c">27 "18"</label><br>
+        <input type="radio"  name="q2" value="q2d">
+        <label for="q1d">error: unknown: Unexpected token, expected ";"</label><br>
+        <br/>  
+
+        <p>3) What does this print?<br/><span id = "var">var</span> x=20; <br/>
+              x/=2; <br/>
+            <span id = "console">console</span>.log(++x);<br/>
+        </p>
+        <input type="radio" name="q3" value="q3a">
+        <label for="q3a">10</label><br>
+        <input type="radio"  name="q3" value="q3correct">
+        <label for="q2correct">11</label><br>
+        <input type="radio"  name="q3" value="q3c">
+        <label for="q3c">error: unknown: Invalid left-hand side in prefix operation</label><br>
+        <input type="radio"  name="q3" value="q3d">
+        <label for="q3d">12</label><br>
+        <br/> 
+
+        <p>4) Is there a possible concern with defining the JavaScript code in the <head> of the page?</p>
+        <input type="radio" name="q4" value="q4correct">
+        <label for="q4correct">Yes, some of the page elements that this code refers to may not have been created.</label><br>
+        <input type="radio"  name="q4" value="q4b">
+        <label for="q4b">This could be problematic only if the JavaScript code creates new objects</label><br>
+        <input type="radio"  name="q4" value="q4c">
+        <label for="q4c">This will only be an issue if the head section is rendered after the body section</label><br>
+        <input type="radio"  name="q4" value="q4d">
+        <label for="q4d">No, this is the only valid place to add it.</label><br>
+        <br/>  
+        
+        <p>5) Immediately Invoked Function Expressions _____:</p>
+        <input type="radio" name="q5" value="q5a">
+        <label for="q5a">execute when the entire script is read</label><br>
+        <input type="radio"  name="q5" value="q5b">
+        <label for="q5b">execute before the script is read</label><br>
+        <input type="radio"  name="q5" value="q5c">
+        <label for="q5c">execute when called by name</label><br>
+        <input type="radio"  name="q5" value="q5correct">
+        <label for="q5correct">execute as soon as the browser reads them</label><br>
+        <br/>  
+        <b><p id = "hidden">Nothing was calculated</p></b>
+        
+      </form>
+      <input type="button" value="back" onclick="history.back()"/>
+      <!-- <button id="submit"">Submit</button> -->
+      
+        
+  </div>
+    
+<!-- <script>
+    var buttonClick = document.getElementById("submit");
+    var hiddenText= document.getElementById("hidden");
+    submit.onclick = function() {
+    if (hiddenText.style.display == "block") {
+        hiddenText.style.display = "none";
+    } else {
+    hiddenText.style.display = "block";
+    }
+} -->
+</script>
+</body>
+</html>
