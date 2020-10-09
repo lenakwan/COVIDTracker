@@ -18,7 +18,7 @@
     function myfunc(){
         let xhttp = new XMLHttpRequest();
         let str = document.getElementById("name").value;
-        xhttp.open("GET", "http://localhost:8080/?name=" +str, true);
+        xhttp.open("GET", "https://polar-plateau-84158.herokuapp.com/?name=" +str, true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if (this.readyState==4 && this.status == 200){
