@@ -2,6 +2,17 @@
     opacity: 0.7;
 }
 
+#navBar{
+    z-index: 10;
+}
 body{
-    background-color: #89c0ca;
+    background-image: url("../img/yvr-bg.png");
+}
+
+#centerWrap{
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:-1;
 }
