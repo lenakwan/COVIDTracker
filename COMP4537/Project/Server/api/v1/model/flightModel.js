@@ -1,9 +1,10 @@
 let db = require('../database');
 
-function findFlight(flightNo) {
-    return db.query(`Select * from covid_flights where flight_id ='${flightNo}'`);
+function findAllFlights() {
+    console.log('inside flightModel');
+    return db.displayFlightData();
 }
 
 module.exports = {
-    findFlight : findFlight
+    findAllFlights
 }
