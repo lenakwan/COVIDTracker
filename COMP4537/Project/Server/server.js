@@ -3,6 +3,7 @@ const { Client } = require('pg');
 const port = process.env.PORT || 3000;
 const app = express();
 const bodyParser = require('body-parser'); 
+const db = require('../Server/api/v1/database');
 let flightController = require("./api/v1/controller/flightController");
 const { response } = require("express");
 
@@ -15,8 +16,11 @@ const { response } = require("express");
 // });
 
 // client.connect();
+app.get('/', (request, response) => {
+    response.json({ info: 'API Server is up and running, please request a valid user token.' })
+  })
 
-app.get("/getFlight/:flightNo", flightController.validFlightData);   
+app.get("/getFlight", flightController.validFlightData);   
 
 
 // app.get("/getAllFlights", (req,res) =>{

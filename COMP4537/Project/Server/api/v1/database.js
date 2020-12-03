@@ -1,19 +1,19 @@
 const express = require("express");
-const { Client } = require('pg');
+const { Pool } = require('pg');
 const port = process.env.PORT || 3000;
 const app = express();
 const bodyParser = require('body-parser'); 
 
 
 
-const client = new Client({
+const pool = new Pool({
     connectionString: 'postgres://aikjuhrslzfqdy:1eff92bd85c4d2a83815f6a4c9a798e1936618bd992cae4f9487b0e873d09cf7@ec2-3-91-139-25.compute-1.amazonaws.com:5432/degs61trjel83u',
     ssl: {
         rejectUnauthorized: false
     }
 });
 
-client.connect(err => {
+pool.connect(err => {
     if (err) {
       console.error('connection error', err.stack)
     } else {
@@ -21,17 +21,16 @@ client.connect(err => {
     }
   })
 
-async function displayFlightData(){
+displayFlightData = (request, response) =>{
     console.log('in db.js');
-    let data = await client.query(`Select * from covid_flights ORDER BY flight_date DESC`, (err, result)=>{
+   pool.query(`Select * from covid_flights ORDER BY flight_date DESC`, (err, result)=>{
         if (err) throw err;
-        console.log(result);
+        console.log(result.rows);
+        response.status(200).json(result.rows);
     });
 
     // console.log(data);
-    return data;
+    
 }
   
-module.exports={
-    displayFlightData
-}
+module.exports.pool = pool;
