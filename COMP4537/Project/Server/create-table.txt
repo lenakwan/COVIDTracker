@@ -1,0 +1,33 @@
+SQL that I used to create the tables
+
+---Flight Details Table---
+CREATE TABLE covid_flights (
+    flight_id varchar(40) NOT NULL,
+    flight_date date NOT NULL,
+    to_city varchar(40),
+    from_city varchar(40),
+    flight_company varchar(40),
+    PRIMARY KEY(flight_id, flight_date)
+);
+
+---User Information Table---
+CREATE TABLE user_info (
+    user_id SERIAL PRIMARY KEY,
+    admin boolean,
+    user_name varchar(40),
+    covid boolean,
+    flight_id varchar(40) NOT NULL,
+    flight_date date NOT NULL
+);
+
+--Location Information Table--
+CREATE TABLE location_info(
+    visit_id SERIAL PRIMARY KEY,
+    location_name varchar(40) NOT NULL,
+    covid boolean,
+    user_id integer,
+    constraint user_id
+        FOREIGN KEY(user_id)
+            REFERENCES user_info(user_id)
+            ON DELETE SET NULL
+);
