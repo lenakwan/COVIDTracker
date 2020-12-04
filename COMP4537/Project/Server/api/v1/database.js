@@ -1,8 +1,6 @@
 const express = require("express");
 const { Pool } = require('pg');
 const port = process.env.PORT || 3000;
-const app = express();
-const bodyParser = require('body-parser'); 
 
 
 
@@ -21,16 +19,10 @@ pool.connect(err => {
     }
   })
 
-displayFlightData = (request, response) =>{
-    console.log('in db.js');
-   pool.query(`Select * from covid_flights ORDER BY flight_date DESC`, (err, result)=>{
-        if (err) throw err;
-        console.log(result.rows);
-        response.status(200).json(result.rows);
-    });
+
 
     // console.log(data);
     
-}
+
   
 module.exports.pool = pool;
