@@ -72,7 +72,9 @@ $(document).ready(function() {
                 localStorage.setItem('token', data.token);
                 window.location.href = './index.html';
             }).
-            catch(e => alert(e));    
+            catch(e => {
+                // alert(e)
+            });    
         }
       });
 });

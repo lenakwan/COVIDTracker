@@ -1,5 +1,5 @@
 const token = localStorage.getItem("token");
-if(!token){
+if(token == 'null'){
     window.location.href = './login.html';
 }
 const user= JSON.parse(atob(token.split('.')[1]));
