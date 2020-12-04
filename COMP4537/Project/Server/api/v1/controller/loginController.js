@@ -1,5 +1,4 @@
 let userModel = require('../model/usersModel');
-// const router = express.Router();
 let jwt = require('jsonwebtoken');
 
 async function authUser(req,res) {
@@ -7,8 +6,7 @@ async function authUser(req,res) {
     userModel.findUser(body.username ,body.password)
         .then((users)=>{
             if(users.rowCount == 1) {
-                console.log(users.rows[0]);
-                res.status(200).json({"token":
+                res.status(200).json({token:
                     jwt.sign({
                         user_name:users.rows[0].user_name,
                         password:users.rows[0].password
@@ -20,7 +18,37 @@ async function authUser(req,res) {
             }
         });
 }
+async function register(req,res) {
+    let body = req.body;
+    try{
+        //check if user exist
+        userModel.getUserId(body.username)
+        .then((result)=>{
+            if(result.rowCount == 0) {
+                console.log('No such user. Lets go');
+
+                userModel.registerUser(body.username ,body.password)
+                    .then(() => {
+                        console.log("User created: " + body.username);
+                        res.status(200).json({token:
+                            jwt.sign({
+                                user_name: body.username,
+                                password: body.password
+                            },'MYSECRETKEY')
+                    });                    
+                })
+            } else {
+                res.status(401).json({message: 'Username already exists'});
+            }
+        });
+
+    }
+    catch(e){
+        console.log(e);
+    }
+}
 
 module.exports = {
-    authUser: authUser
+    authUser: authUser,
+    register: register
 }

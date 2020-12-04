@@ -10,7 +10,8 @@ $(document).ready(function() {
         $("#signInMoment").hide();
       });
 
-      $("#signInButton").click(()=>{
+      $("#signInButton").click((e)=>{
+        e.preventDefault();
         fetch('http://localhost:3000/login', {
             method: 'POST', // likewise we have DELETE, PUT, PATCH
             headers: {
@@ -18,7 +19,7 @@ $(document).ready(function() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username: document.getElementById('userid').value,
+                username: document.getElementById('username').value,
                 password:  document.getElementById('pw').value
             })
         }).
@@ -33,7 +34,43 @@ $(document).ready(function() {
             localStorage.setItem('token', data.token);
             window.location.href = './index.html';
         }).
-        catch(e => {alert(e); console.log(e)});
-    
+        catch(e => alert(e));
+      });
+
+
+      $("#signUpButton").click((e)=>{
+        e.preventDefault();
+        if (document.getElementById('rpw').value != document.getElementById('cfpw').value){
+            alert("Password must match!");
+            
+        }
+        else {
+            fetch('http://localhost:3000/register', {
+                method: 'POST', // likewise we have DELETE, PUT, PATCH
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: document.getElementById('rusername').value,
+                    password: document.getElementById('rpw').value
+                })
+            }).
+            then(res => {
+                console.log(res);
+                if(res.status == 200) {
+                    return res.json();
+                }
+                else if (res.status == 401) {
+                    throw new Error('Username already exists!');
+                }
+            })
+            .then(data => {
+                console.log("??")
+                localStorage.setItem('token', data.token);
+                window.location.href = './index.html';
+            }).
+            catch(e => alert(e));    
+        }
       });
 });

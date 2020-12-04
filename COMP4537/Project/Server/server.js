@@ -17,6 +17,7 @@ app.use(cors());
 
 
 app.post('/login', authController.authUser);
+app.post('/register', authController.register);
 
 app.get('/', (request, response) => {
     response.json({ info: 'API Server is up and running, please request a valid user token.' })

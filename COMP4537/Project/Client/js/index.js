@@ -1,14 +1,12 @@
+const token = localStorage.getItem("token");
+if(!token){
+    window.location.href = './login.html';
+}
+const user= JSON.parse(atob(token.split('.')[1]));
 
 $(document).ready(function() {
-    let token = localStorage.getItem("token");
-    let user;
-    try {
-        user= JSON.parse(atob(token.split('.')[1]));
-    } catch (e) {
-        // window.location.href = './login.html';
-    }
+    // if token
     console.log(user);
-    console.log("hing");
     $("#loginUserName").html(user.user_name);
     $("#search").click(()=> {
 
@@ -30,7 +28,6 @@ $(document).ready(function() {
             throw new Error('Invalid credentials');
         })
         .then(data => {
-            // console.log(data)
             localStorage.setItem('token', data.token);
             window.location.href = './contacts.html';
         }).
@@ -40,7 +37,6 @@ $(document).ready(function() {
 
     $('#signout').click(()=>{
         localStorage.setItem('token', null);
-
         window.location.href = './login.html';
     });
 
