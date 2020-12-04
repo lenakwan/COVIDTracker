@@ -24,7 +24,6 @@ $(document).ready(function() {
             })
         }).
         then(res => {
-            console.log(res);
             if(res.status == 200) {
                 return res.json();
             }
@@ -32,6 +31,9 @@ $(document).ready(function() {
         })
         .then(data => {
             localStorage.setItem('token', data.token);
+            if (data.admin) {
+                window.location.href = './admin.html';
+            }
             window.location.href = './index.html';
         }).
         catch(e => alert(e));

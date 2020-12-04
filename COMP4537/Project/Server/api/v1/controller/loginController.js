@@ -10,7 +10,8 @@ async function authUser(req,res) {
                     jwt.sign({
                         user_name:users.rows[0].user_name,
                         password:users.rows[0].password
-                    },'MYSECRETKEY')
+                    },'MYSECRETKEY'),
+                    admin: users.rows[0].admin
                 });
                 console.log("Log in!");
             } else {
