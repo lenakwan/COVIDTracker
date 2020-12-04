@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser'); 
 let flightController = require("./api/v1/controller/flightController");
 const { response } = require("express");
-const flightModel = require("./api/v1/model/flightModel");
+const locationController = require("./api/v1/controller/locationController");
 
 app.use(bodyParser.json());
 
@@ -27,6 +27,14 @@ app.post("/createFlightEntry", flightController.createFlight);
 app.delete("/deleteFlightEntry", flightController.deleteFlight);
 
 app.put("/updateFlightEntry", flightController.updateFlight);
+
+app.get("/getAllLocations", locationController.validLocationData);
+
+app.post("/inputUserLocation", locationController.validLocationEntry);
+
+app.delete("/deleteuserLocation", locationController.deleteUserLocation);
+
+app.get("/getUserLocations/:user_id", locationController.validUserLocations);
 
 // app.get("/getAllFlights", (req,res) =>{
 //     db.pool.query("SELECT * FROM covid_flights", (err, result) =>{
