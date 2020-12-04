@@ -1,5 +1,6 @@
 let userModel = require('../model/usersModel');
 let jwt = require('jsonwebtoken');
+let secret = 'MYSECRETKEY';
 
 async function authUser(req,res) {
     let body = req.body;
@@ -10,7 +11,7 @@ async function authUser(req,res) {
                     jwt.sign({
                         user_name:users.rows[0].user_name,
                         password:users.rows[0].password
-                    },'MYSECRETKEY'),
+                    }, secret),
                     admin: users.rows[0].admin
                 });
                 console.log("Log in!");
@@ -35,7 +36,7 @@ async function register(req,res) {
                             jwt.sign({
                                 user_name: body.username,
                                 password: body.password
-                            },'MYSECRETKEY')
+                            }, secret)
                     });                    
                 })
             } else {
@@ -47,6 +48,23 @@ async function register(req,res) {
     catch(e){
         console.log(e);
     }
+}
+
+
+async function validateToken(token, secret) {
+    try {
+        const result  = jwt.verify(token, secret);
+      
+        return {
+            "name": result.name,
+            "role": result.role,
+        }
+    }
+    catch(ex){
+        return null;
+    }
+   
+  
 }
 
 module.exports = {
