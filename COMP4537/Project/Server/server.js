@@ -12,7 +12,7 @@ app.get('/', (request, response) => {
     response.json({ info: 'API Server is up and running, please request a valid user token.' })
   })
 
-app.get("/getFlight", flightController.validFlightData);   
+app.get("/getFlights", flightController.validFlightData);   
 
 app.get("/getSingleFlight/:flight_id/:flight_date", flightController.validSingleFlightData);
 
@@ -25,6 +25,8 @@ app.get("/getDeparture", flightController.validDeparture);
 app.post("/createFlightEntry", flightController.createFlight);
 
 app.delete("/deleteFlightEntry", flightController.deleteFlight);
+
+app.put("/updateFlightEntry", flightController.updateFlight);
 
 // app.get("/getAllFlights", (req,res) =>{
 //     db.pool.query("SELECT * FROM covid_flights", (err, result) =>{

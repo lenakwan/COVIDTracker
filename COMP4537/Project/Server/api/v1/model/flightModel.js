@@ -57,6 +57,15 @@ deleteFlightEntry = async (flight_id, flight_date) => {
 });
 }
 
+//UPDATE covid_flights SET to_city = 'testcity', from_city = 'testcity', flight_company = 'testcompany' WHERE flight_id = 'test' AND flight_date = '2020-11-28';
+//must be passed objects with '' in body
+updateFlightEntry = async (flight_id, flight_date, to_city, from_city, flight_company) => {
+  return await db.pool.query({
+    text: "UPDATE covid_flights SET to_city = $3, from_city = $4, flight_company = $5 WHERE flight_id = $1 AND flight_date = $2;",
+    values: [flight_id, flight_date, to_city, from_city, flight_company]
+});
+}
+
 module.exports = {
   findAllFlights: findAllFlights,
   findSingleFlight: findSingleFlight,
@@ -64,5 +73,6 @@ module.exports = {
   findArrival: findArrival,
   findDeparture: findDeparture,
   createFlightEntry: createFlightEntry,
-  deleteFlightEntry: deleteFlightEntry
+  deleteFlightEntry: deleteFlightEntry,
+  updateFlightEntry: updateFlightEntry
 }

@@ -8,7 +8,7 @@ validFlightData= async (req,res) => {
     }).
     catch(e => res.status(500).json({message:e.message}));
 }
-
+//flight_id must be in ''
 validSingleFlightData= async (req,res) => {
     console.log('inside controller');
     let flight_id = req.params.flight_id;
@@ -21,7 +21,7 @@ validSingleFlightData= async (req,res) => {
     }).
     catch(e => res.status(500).json({message:e.message}));
 }
-
+// flight company name must be in ''
 validFlightCarrier= async (req,res) => {
     console.log('inside controller');
     let flight_company = req.params.flight_company;
@@ -65,6 +65,7 @@ createFlight = (req,res)=>{
     catch(e => res.status(500).json({message:e.message}));
 }
 
+//can directly use ""
 deleteFlight = (req,res) =>{
     let body = req.body;
     let flight_id = body.flight_id;
@@ -76,6 +77,20 @@ deleteFlight = (req,res) =>{
     catch(e => res.status(500).json({message:e.message}));
 }
 
+// objects in body must be in the format "'field'"
+// example: "flight_id": "'test'"
+updateFlight =(req, res)=>{
+    let body = req.body;
+    let flight_id = body.flight_id;
+    let flight_date = body.flight_date;
+    let to_city = body.to_city;
+    let from_city = body.from_city;
+    let flight_company = body.flight_company;
+    console.log("primary key = " +flight_id+ " & "+ flight_date);
+    flightModel.createFlightEntry(flight_id, flight_date, to_city, from_city, flight_company).then( (data) => {
+        res.status(200).json('Updated Entry in database.');
+    }).catch(e => res.status(500).json({message:e.message}));
+}
 module.exports={
     validFlightData:validFlightData,
     validSingleFlightData:validSingleFlightData,
@@ -83,5 +98,6 @@ module.exports={
     validArrival : validArrival,
     validDeparture : validDeparture,
     createFlight: createFlight,
-    deleteFlight: deleteFlight 
+    deleteFlight: deleteFlight, 
+    updateFlight: updateFlight
 }
