@@ -1,8 +1,16 @@
+
 $(document).ready(function() {
-
-
-    
-    document.getElementById('submit').addEventListener('click', e => {
+    let token = localStorage.getItem("token");
+    let user;
+    try {
+        user= JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+        // window.location.href = './login.html';
+    }
+    console.log(user);
+    console.log("hing");
+    $("#loginUserName").html(user.user_name);
+    $("#search").click(()=> {
 
         fetch('http://localhost:3000/getFlight', {
             method: 'GET', // likewise we have DELETE, PUT, PATCH
@@ -29,6 +37,12 @@ $(document).ready(function() {
         catch(e => alert(e));
 
     })
+
+    $('#signout').click(()=>{
+        localStorage.setItem('token', null);
+
+        window.location.href = './login.html';
+    });
 
 
 });

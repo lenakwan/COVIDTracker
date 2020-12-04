@@ -34,3 +34,7 @@ body{
 #signCon{
     width:80%;
 }
+
+#signUpMoment{
+    display: none;
+}

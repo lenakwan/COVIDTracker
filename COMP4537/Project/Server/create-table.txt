@@ -15,9 +15,10 @@ CREATE TABLE user_info (
     user_id SERIAL PRIMARY KEY,
     admin boolean,
     user_name varchar(40),
+    password varchar
     covid boolean,
     flight_id varchar(40) NOT NULL,
-    flight_date date NOT NULL
+    flight_date date NOT NULL,
 );
 
 --Location Information Table--
