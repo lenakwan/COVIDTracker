@@ -26,7 +26,7 @@
                 </li>
                 
               </ul>
-              <span>Admin: <span id="loginUserName"></span></span>
+             
               <button class="btn btn-outline-secondary" type="button" id="signout">Sign Out</button>
             </div>
           </nav>
@@ -34,17 +34,23 @@
     <div class="container" id="centerWrap">
        
         <div class="jumbotron opaqueBox">
-            <h1 class="display-4">Administration</h1>
+            <h5 class="display-4">Hello, <span id="loginUserName"></span></h5>       
             <p class="lead">Add or Remove Flights that have confirmed cases of Covid-19</p>
             <hr class="my-4">
-            <p>Enter your flight number here.</p>
-            <p class="lead">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-1" type="search" placeholder="Flight Number" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search">Search</button>
-                  </form>
-            </p>
+            <div class="jumbotron">
+              <p class="lead">Flights</p>
+              <div class='flightInfo' >
+                will display flights
+              </div>
+            </div>   
+            <div class="jumbotron">
+              <p class="lead">Locations</p>
+              <div class='flightInfo' >
+                will display locations
+              </div>
+              </div>   
           </div>   
+          
     </div>
 
 

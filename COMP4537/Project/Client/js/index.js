@@ -10,7 +10,7 @@ $(document).ready(function() {
     $("#loginUserName").html(user.user_name);
     $("#search").click(()=> {
 
-        fetch('http://localhost:3000/getFlight', {
+        fetch('https://covid-flight-backend.herokuapp.com/v1/getFlights', {
             method: 'GET', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
