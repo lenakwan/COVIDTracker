@@ -17,36 +17,36 @@ api.use(bodyParser.json()) // middleware
 api.use(cors());
 
 
-api.post('/login', authController.authUser);
-api.post('/register', authController.register);
+api.post('/login', authController.authUser); //used
+api.post('/register', authController.register); //used
 
 api.get('/', (request, response) => {
     response.json({ info: 'API Server is up and running, please request a valid user token.' })
   })
 
-api.get("/getFlights", flightController.validFlightData);   
+api.get("/getFlights", flightController.validFlightData);   //used
 
-api.get("/getSingleFlight/:flight_id/:flight_date", flightController.validSingleFlightData);
+api.get("/getSingleFlight/:flight_id/:flight_date", flightController.validSingleFlightData); //used
 
-api.get("/getCarrierFlights/:flight_company", flightController.validFlightCarrier);
+api.get("/getCarrierFlights/:flight_company", flightController.validFlightCarrier); 
 
 api.get("/getArrival", flightController.validArrival);
 
 api.get("/getDeparture", flightController.validDeparture);
 
-api.post("/createFlightEntry", flightController.createFlight);
+api.post("/createFlightEntry", flightController.createFlight); //used
 
-api.delete("/deleteFlightEntry", flightController.deleteFlight);
+api.delete("/deleteFlightEntry", flightController.deleteFlight); //used
 
-api.put("/updateFlightEntry", flightController.updateFlight);
+api.put("/updateFlightEntry", flightController.updateFlight); //used
 
-api.get("/getAllLocations", locationController.validLocationData);
+api.get("/getAllLocations", locationController.validLocationData); 
 
-api.post("/inputUserLocation", locationController.validLocationEntry);
+api.post("/inputUserLocation", locationController.validLocationEntry); //used
 
 api.delete("/deleteuserLocation", locationController.deleteUserLocation);
 
-api.get("/getUserLocations/:user_id", locationController.validUserLocations);
+api.get("/getUserLocations/:user_id", locationController.validUserLocations); 
 
 
 module.exports= api;
