@@ -8,6 +8,11 @@
     background-color: rgba(79,79,81,100);
   }
 
+.overflow-auto{
+    max-width: 90%;
+    max-height: 90%;
+}
+
 .adminButton{
     background-color: #86BBD8;
     border-color: #86BBD8;

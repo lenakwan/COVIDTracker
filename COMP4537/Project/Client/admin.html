@@ -21,10 +21,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="./index.html">Home </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About Us</a>
+            <a class="nav-link" href="#">Tracking<span class="sr-only">(current)</span></a>
           </li>
 
         </ul>
@@ -61,14 +61,14 @@
                     <form class="form-inline my-2 my-lg-0">
                       
                       <input class="form-control" type="text" placeholder="Flight Number" aria-label="flight_id"
-                        id="flight_id">
+                        id="add_flight_id">
                     
                       <input class="form-control" type="text" placeholder="Arrival City" aria-label="to_city"
-                        id="to_city">
+                        id="add_to_city">
                       <input class="form-control" type="text" placeholder="Departure City" aria-label="from_city"
-                        id="from_city">
+                        id="add_from_city">
                       <input class="form-control" type="text" placeholder="Flight Carrier" aria-label="flight_company"
-                        id="flight_company">
+                        id="add_flight_company">
                         <input class="form-control" type="date" value="2020-11-19" id="flight_date">
                     </form>
                   </div>
@@ -139,14 +139,14 @@
                       and carrier.</p>
                     <form class="form-inline my-2 my-lg-0">
                       <input class="form-control" type="search" placeholder="Flight Number" aria-label="flight_id"
-                        id="flight_id">
+                        id="edit_flight_id">
                       <input class="form-control" type="search" placeholder="Arrival City" aria-label="to_city"
-                        id="to_city">
+                        id="edit_to_city">
                       <input class="form-control" type="search" placeholder="Departure City" aria-label="from_city"
-                        id="from_city">
+                        id="edit_from_city">
                       <input class="form-control" type="search" placeholder="Flight Carrier" aria-label="flight_company"
-                        id="flight_company">
-                        <input class="form-control" type="date" value="2020-11-19" id="flight_date">
+                        id="edit_flight_company">
+                        <input class="form-control" type="date" value="2020-11-19" id="edit_flight_date">
                     </form>
                   </div>
                   <div class="modal-footer">
@@ -161,25 +161,25 @@
 
           <!-- DISPLAY USERS -->
           <div class="jumbotron">
-            <p class="lead">Display Users</p>
-            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
-              data-target="#displayUsersModal">
-              Display Users
+            <p class="lead">Display All Flights</p>
+            <button type="button" id="displayAll" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#displayFlightsModal">
+              Display Flights
             </button>
             <!-- EDIT FLIGHT MODAL -->
-            <div class="modal fade" id="displayUsersModal" tabindex="-1" role="dialog"
-              aria-labelledby="displayUsersModalLabel" aria-hidden="true">
+            <div class="modal fade overflow-auto" id="displayFlightsModal" tabindex="-1" role="dialog"
+              aria-labelledby="displayFlightsModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="displayUsersModalLabel">Display Data of Existing Users</h5>
+                    <h5 class="modal-title" id="displayUsersModalLabel">Display Data of All COVID Positive Flights</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
                     <p>User Data</p>
-                    <div id="userData">
+                    <div id="flightData">
 
                     </div>
                     </form>
