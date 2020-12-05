@@ -10,14 +10,11 @@ validFlightData= async (req,res) => {
 }
 //flight_id must be in ''
 validSingleFlightData= async (req,res) => {
-    console.log('inside controller');
     let flight_id = req.params.flight_id;
     let flight_date = req.params.flight_date;
-    console.log(flight_id + flight_date);
     let flightInfo = flightModel.findSingleFlight(flight_id, flight_date);
-    console.log(flightInfo);
     flightInfo.then( ([data,meta]) => {
-        res.status(200).json(data);
+        res.status(204).json(data);
     }).
     catch(e => res.status(500).json({message:e.message}));
 }

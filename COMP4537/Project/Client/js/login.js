@@ -12,7 +12,8 @@ $(document).ready(function() {
 
       $("#signInButton").click((e)=>{
         e.preventDefault();
-        fetch('https://covid-flight-backend.herokuapp.com/v1/login', {
+        // fetch('https://covid-flight-backend.herokuapp.com/v1/login',{
+        fetch('http://localhost:3000/v1/login',{
             method: 'POST', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
@@ -42,39 +43,96 @@ $(document).ready(function() {
 
       $("#signUpButton").click((e)=>{
         e.preventDefault();
-        if (document.getElementById('rpw').value != document.getElementById('cfpw').value){
-            alert("Password must match!");
-            
+        if (!$('#rusername').val()){
+            alert("You have to enter User Name");   
         }
-        else {
-            fetch('https://covid-flight-backend.herokuapp.com/v1/register', {
-                method: 'POST', // likewise we have DELETE, PUT, PATCH
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: document.getElementById('rusername').value,
-                    password: document.getElementById('rpw').value
-                })
-            }).
-            then(res => {
-                console.log(res);
-                if(res.status == 200) {
-                    return res.json();
-                }
-                else if (res.status == 401) {
-                    throw new Error('Username already exists!');
-                }
-            })
-            .then(data => {
-                console.log("??")
-                localStorage.setItem('token', data.token);
-                window.location.href = './index.html';
-            }).
-            catch(e => {
-                // alert(e)
-            });    
+        else if (!$('#rpw').val() || !$('#cfpw').val()){
+            alert("You have to enter Password");   
+        }
+        else if ($('#rpw').val() != $('#cfpw').val()){
+            alert("Password must match!");   
         }
       });
+
+
+    //add flight
+    $("#search_flight").click(() => {
+
+        if (!$('#flight_id').val()){
+            alert("You have to enter flight number");   
+        }
+        else if (!$('#flight_date').val()){
+            alert("You have to enter flight date");   
+        }
+        else {
+            // fetch('https://covid-flight-backend.herokuapp.com/v1/createFlightEntry', {
+            fetch("http://localhost:3000/v1/getSingleFlight/'" + $('#flight_id').val() + "'/'" + $('#flight_date').val() + "'", {
+                    method: 'GET', // likewise we have DELETE, PUT, PATCH
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }).
+                then(res => {
+                    console.log(res);
+                    if (res.status == 200) {
+                        console.log("Success");
+                        return res.json();
+                        
+                    } else if (res.status == 401) {
+                        throw new Error('Invalid Values');
+                    }else{
+                        console.log(res.json);
+                    }
+                })
+                .then(data => {
+                    if(data){
+                        $('#flightState').html('Confirmed');
+                    }
+                    else {
+                        $('#flightState').html('No case found');
+                    }
+                    $('#realSignUp').prop('disabled', false);
+                }).
+            catch(e => {
+                // alert(e)
+            });
+        }
+    });
+
+    $('#realSignUp').click(()=> {
+        // fetch('https://covid-flight-backend.herokuapp.com/v1/register', {
+        fetch('http://localhost:3000/v1/register', {
+            method: 'POST', // likewise we have DELETE, PUT, PATCH
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: $('#rusername').val(),
+                password: $('#rpw').val(),
+                flight_id: $('#flight_id').val(),
+                flight_date: $('#flight_date').val()
+            })
+        }).
+        then(res => {
+            console.log(res);
+            if(res.status == 200) {
+                return res.json();
+            }
+            else if (res.status == 401) {
+                throw new Error('Username already exists!');
+            }
+        })
+        .then(data => {
+            console.log("??")
+            localStorage.setItem('token', data.token);
+            window.location.href = './index.html';
+        }).
+        catch(e => {
+            // alert(e)
+        });    
+
+    })
+   
 });

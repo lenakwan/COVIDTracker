@@ -6,6 +6,7 @@ async function authUser(req,res) {
     let body = req.body;
     userModel.findUser(body.username ,body.password)
         .then((users)=>{
+            console.log(users);
             if(users.rowCount == 1) {
                 res.status(200).json({token:
                     jwt.sign({
@@ -20,6 +21,7 @@ async function authUser(req,res) {
             }
         });
 }
+
 async function register(req,res) {
     let body = req.body;
     try{
@@ -28,8 +30,7 @@ async function register(req,res) {
         .then((result)=>{
             if(result.rowCount == 0) {
                 console.log('No such user. Lets go');
-
-                userModel.registerUser(body.username ,body.password)
+                userModel.registerUser(body.username ,body.password, body.flight_id, body.flight_date)
                     .then(() => {
                         console.log("User created: " + body.username);
                         res.status(200).json({token:

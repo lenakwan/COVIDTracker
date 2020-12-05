@@ -43,10 +43,40 @@
             </div>
             <div id="signUpMoment">
               <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-1 " type="search" placeholder="User Name" aria-label="username" id="rusername">
-                <input class="form-control mr-sm-1" type="password" placeholder="Password" aria-label="pw" id="rpw">
-                <input class="form-control mr-sm-1 " type="password" placeholder="Confirm Password" aria-label="cfpw" id="cfpw">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="signUpButton">Sign up</button>
+                  <input class="form-control mr-sm-1 " type="search" placeholder="User Name" aria-label="username" id="rusername">
+                  <input class="form-control mr-sm-1" type="password" placeholder="Password" aria-label="pw" id="rpw">
+                  <input class="form-control mr-sm-1 " type="password" placeholder="Confirm Password" aria-label="cfpw" id="cfpw">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#addFlightModal" id="signUpButton">Sign up</button>
+            <!-- ADD FLIGHT MODAL -->
+            <div class="modal fade" id="addFlightModal" tabindex="-1" role="dialog"
+              aria-labelledby="addFlightModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addFlightModalLabel">Add Your Flight Information Before Go!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" >
+                    <form class="form-inline my-2 my-lg-0">
+                      <input class="form-control" type="date" value="2020-11-19" id="flight_date">
+                      <input class="form-control" type="text" placeholder="Flight Number" aria-label="flight_id" id="flight_id">
+                      <button type="button" class="btn btn-secondary" id="search_flight">Search</button>
+                      <p id="flightState"></p>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="realSignUp" disabled="true">Submit</button>
+                  </div>
+                </div>
+              </div>
+                <!-- </div>
+                <div>
+                  <input class="form-control mr-sm-1 " type="search" placeholder="Flight Date" aria-label="username" id="rusername">
+                  <input class="form-control mr-sm-1" type="password" placeholder="Flight Number" aria-label="pw" id="rpw">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="signUpButton">Sign up</button>
+                </div> -->
               </form>
               <button class="btn my-2 my-sm-0" type="submit" id="toSignIn">Go to Sign In</button>
             </div>
