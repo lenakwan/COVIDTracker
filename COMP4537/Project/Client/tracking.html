@@ -42,11 +42,11 @@
         <div class="jumbotron text-center">
           <p class="lead">Flight Status</p>
           <div class="row">
-            <div class="col-sm" id="trackingFlightNumber">
-              left
+            <div class="col-sm">
+              <p>Flight: <br/><span id="trackingFlightNumber"></span></p>
             </div>
-            <div class="col-sm" id="trackingFlightStatus">
-              right
+            <div class="col-sm" >
+              <p>Status: <br/><span id="trackingFlightStatus"></span></p>
             </div>
           </div>
         </div>
@@ -80,12 +80,12 @@
                 </div>
               </div>
             </div>
-
+https://www.flaticon.com/aut
             <p class="lead"> </p>
             <button type="button" class="btn btn-primary adminButton" data-toggle="modal" data-target="#deleteLocation">
               Delete Location Entry
             </button>
-            <!-- #addLocation Modal -->
+            <!-- #deleteLocation Modal -->
             <div class="modal fade" id="deleteLocation" tabindex="-1" role="dialog"
               aria-labelledby="deleteLocationModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -130,8 +130,8 @@
                   <div class="modal-body">
                     <form class="form-inline my-2 my-lg-0">
                       <input class="form-control" type="text" placeholder="Location Name" aria-label="flight_id"
-                        id="location_name">
-                      <input class="form-control" type="date" value="2020-11-19" id="flight_date">
+                        id="add_location_name">
+                      <input class="form-control" type="date" value="2020-11-19" id="add_date">
                     </form>
                   </div>
                   <div class="modal-footer">
@@ -279,7 +279,7 @@
                   </div>
                   <div class="modal-body">
                     <div id="displayLocationData">
-
+                      server busy... please try again
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -311,7 +311,7 @@
                   </div>
                   <div class="modal-body">
                     <div id="displayArrivalData">
-                      loading...
+                      server busy... please try again
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -340,7 +340,7 @@
                   </div>
                   <div class="modal-body">
                     <div id="displayDepartureData">
-                      loading...
+                      server busy... please try again
                     </div>
                   </div>
                   <div class="modal-footer">

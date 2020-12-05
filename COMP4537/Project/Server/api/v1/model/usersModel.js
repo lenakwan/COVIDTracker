@@ -6,8 +6,8 @@ async function findUser(username,password) {
 function getUserId(username) {
     return db.pool.query("Select user_id from user_info where user_name ='" +username +"'");
 }
-async function registerUser(username, password, flight_id, flight_date) {
-    return await db.pool.query(`INSERT INTO user_info(user_id, admin, user_name, covid, flight_id, flight_date, password) VALUES (nextval('user_info_user_id_seq'), false, '${username}', false, '${flight_id}', '${flight_date}', '${password}')`);
+async function registerUser(username, password) {
+    return await db.pool.query(`INSERT INTO user_info(user_id, admin, user_name, covid, flight_id, flight_date, password) VALUES (nextval('user_info_user_id_seq'), false, '${username}', false, '123', '2020-11-27', '${password}')`);
 }
 
 
