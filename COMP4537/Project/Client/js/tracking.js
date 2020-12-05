@@ -118,7 +118,6 @@ $(document).ready(function () {
                 let result = "";
                 for (i = 0; i < data.length; i++) {
                     let time = data[i].flight_date.split('T')[0];
-                    console.log(time);
                     result += "<p>Flight: " + data[i].flight_id + " Date: " +
                         time + " From: " + data[i].from_city + " To: " + data[i].to_city + "</p>";
                 }
@@ -403,17 +402,12 @@ $(document).ready(function () {
                 for (i = 0; i < data.length; i++) {
                     let time = data[i].flight_date;
                     let id = data[i].flight_id;
-                    console.log(time);
-                    console.log(id);
-                    if ((time == login_flight_date) && (id = login_flight_number)) {
-                        console.log("confirm");
+                    if ((time == login_flight_date) && (id == login_flight_number)) {
                         $("#trackingFlightStatus").html("Confirmed");
                         $("#trackingFlightStatus").css( {"color": "red"});
                         $("#riskImage").html('<img src="./img/cancel.png" alt="No Covid Patients Found" width="120" height="auto">');
-                        
                     }
                 }
-                console.log(result);
             }).
         catch(e => {
             // alert(e)
@@ -421,6 +415,10 @@ $(document).ready(function () {
     }
     
     checkFlight();
-    
 
+    $('#signout').click(() => {
+        console.log('click');
+        localStorage.setItem('token', null);
+        window.location.href = './login.html';
+    });
 });
