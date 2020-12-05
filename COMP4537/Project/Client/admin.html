@@ -1,69 +1,215 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covid 19 Tracker</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/stylesheet.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covid 19 Tracker</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/stylesheet.css">
 </head>
 
 <body>
-    <div class="container" id="navBar">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">YVR Covid Tracking</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+  <div class="container=fluid " id="navBar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">YVR Covid Tracking</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+
+        </ul>
+
+        <button class="btn btn-outline-secondary" type="button" id="signout">Sign Out</button>
+      </div>
+    </nav>
+  </div>
+  <div class="container d-flex align-items-center min-vh-100">
+    <div class="container " id="centerWrap">
+      <div class="jumbotron opaqueBox text-center ">
+
+        <h5 class="display-4">Hello, <span id="loginUserName"></span></h5>
+        <p class="lead">Add or Remove Flights that have confirmed cases of Covid-19</p>
+        <hr class="my-4">
+        <div class="row justify-content-center">
+          <div class="jumbotron">
+            <p class="lead">Add Flights</p>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal" data-target="#addFlightModal">
+              Add New Flight
             </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">About Us</a>
-                </li>
-                
-              </ul>
-             
-              <button class="btn btn-outline-secondary" type="button" id="signout">Sign Out</button>
+            <!-- ADD FLIGHT MODAL -->
+            <div class="modal fade" id="addFlightModal" tabindex="-1" role="dialog"
+              aria-labelledby="addFlightModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addFlightModalLabel">Add Flight to COVID Positive Flights</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" >
+                    <form class="form-inline my-2 my-lg-0">
+                      
+                      <input class="form-control" type="text" placeholder="Flight Number" aria-label="flight_id"
+                        id="flight_id">
+                    
+                      <input class="form-control" type="text" placeholder="Arrival City" aria-label="to_city"
+                        id="to_city">
+                      <input class="form-control" type="text" placeholder="Departure City" aria-label="from_city"
+                        id="from_city">
+                      <input class="form-control" type="text" placeholder="Flight Carrier" aria-label="flight_company"
+                        id="flight_company">
+                        <input class="form-control" type="date" value="2020-11-19" id="flight_date">
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="add_flight_submit">Create
+                      Entry</button>
+                  </div>
+                </div>
+              </div>
+
+              <p></p>
             </div>
-          </nav>
-    </div>
-    <div class="container" id="centerWrap">
-       
-        <div class="jumbotron opaqueBox">
-            <h5 class="display-4">Hello, <span id="loginUserName"></span></h5>       
-            <p class="lead">Add or Remove Flights that have confirmed cases of Covid-19</p>
-            <hr class="my-4">
-            <div class="jumbotron">
-              <p class="lead">Flights</p>
-              <div class='flightInfo' >
-                will display flights
+          </div>
+          <div class="jumbotron">
+            <p class="lead">Remove Flights</p>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#deleteFlightModal">
+              Delete Flight
+            </button>
+            <!-- DELETE FLIGHT MODAL -->
+            <div class="modal fade" id="deleteFlightModal" tabindex="-1" role="dialog"
+              aria-labelledby="deleteFlightModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteFlightModalLabel">Delete Flight from COVID Positive Flights</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="form-inline my-2 my-lg-0">
+                      <input class="form-control" type="search" placeholder="Flight Number" aria-label="flight_id"
+                        id="flight_id">
+                        <input class="form-control" type="date" value="2020-11-19" id="flight_date">
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="delete_flight_submit">Delete
+                      Entry</button>
+                  </div>
+                </div>
               </div>
-            </div>   
-            <div class="jumbotron">
-              <p class="lead">Locations</p>
-              <div class='flightInfo' >
-                will display locations
+            </div>
+          </div>
+          <!-- EDIT FLIGHT -->
+          <div class="jumbotron">
+            <p class="lead">Edit Flights</p>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#editFlightModal">
+              Edit Flight
+            </button>
+            <!-- EDIT FLIGHT MODAL -->
+            <div class="modal fade" id="editFlightModal" tabindex="-1" role="dialog"
+              aria-labelledby="editFlightModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editFlightModalLabel">Edit Existing Flight Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Edit a flight based on its Flight Number and Flight Date, you can change the arrival, departure
+                      and carrier.</p>
+                    <form class="form-inline my-2 my-lg-0">
+                      <input class="form-control" type="search" placeholder="Flight Number" aria-label="flight_id"
+                        id="flight_id">
+                      <input class="form-control" type="search" placeholder="Arrival City" aria-label="to_city"
+                        id="to_city">
+                      <input class="form-control" type="search" placeholder="Departure City" aria-label="from_city"
+                        id="from_city">
+                      <input class="form-control" type="search" placeholder="Flight Carrier" aria-label="flight_company"
+                        id="flight_company">
+                        <input class="form-control" type="date" value="2020-11-19" id="flight_date">
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="edit_flight_submit">Update
+                      Entry</button>
+                  </div>
+                </div>
               </div>
-              </div>   
-          </div>   
-          
-    </div>
+            </div>
+          </div>
+
+          <!-- DISPLAY USERS -->
+          <div class="jumbotron">
+            <p class="lead">Display Users</p>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#displayUsersModal">
+              Display Users
+            </button>
+            <!-- EDIT FLIGHT MODAL -->
+            <div class="modal fade" id="displayUsersModal" tabindex="-1" role="dialog"
+              aria-labelledby="displayUsersModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="displayUsersModalLabel">Display Data of Existing Users</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>User Data</p>
+                    <div id="userData">
+
+                    </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-        <script src="./js/index.js"></script>
+    </div>
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="./js/admin.js"></script>
 
 </body>
 
