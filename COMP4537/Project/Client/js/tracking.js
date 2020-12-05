@@ -4,12 +4,20 @@ if (token == 'null') {
 }
 const user = JSON.parse(atob(token.split('.')[1]));
 const login_user_id = localStorage.getItem("user_id");
+const login_user_status = localStorage.getItem("covid");
+const login_flight_number = localStorage.getItem("flight_id");
+const login_flight_date = localStorage.getItem("flight_date");
+
 
 $(document).ready(function () {
     // if token
     console.log(user);
     $("#loginUserName").html(user.user_name);
-
+    $("#trackingFlightStatus").html("None");
+    $("#trackingFlightNumber").html(login_flight_number);
+    $("#trackingFlightStatus").css( {"color": "green"});
+    
+  
     //display all flights
     $("#displayAll").click(() => {
         fetch('https://covid-flight-backend.herokuapp.com/v1/getFlights', {
@@ -68,15 +76,15 @@ $(document).ready(function () {
                 }
             })
             .then(data => {
-                let all_location_result = "";
+                let all_location_results = "";
                 for (i = 0; i < data.length; i++) {
                     let time = data[i].date.split('T')[0];
                     console.log(time);
-                    all_location_result += "<p>Location: " + data[i].location_name + " Date: " +
+                    all_location_results += "<p>Location: " + data[i].location_name + " Date: " +
                         time + " Covid-19: " + data[i].covid + "</p>";
                 }
-                console.log(all_location_result);
-                document.getElementById("displayLocationData").innerHTML = all_location_result;
+                console.log(all_location_results);
+                document.getElementById("displayLocationData").innerHTML = all_location_results;
             }).
         catch(e => {
             // alert(e)
@@ -195,6 +203,48 @@ $(document).ready(function () {
         });
     });
 
+    $("#search_carrier_submit").click(() => {
+        fetch('https://covid-flight-backend.herokuapp.com/v1/getCarrierFlights/' + "'"+ $('#search_flight_company').val() +"'", {
+            method: 'GET', // likewise we have DELETE, PUT, PATCH
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).
+        then(res => {
+                console.log(res.json);
+                if (res.status == 200) {
+                    console.log("Success");
+                    return res.json();
+
+                } else if (res.status == 401) {
+                    throw new Error('Invalid Values');
+                } else {
+                    console.log(res.json);
+                }
+            })
+            .then(data => {
+                let result = "";
+                for (i = 0; i < data.length; i++) {
+                    
+                    let time = data[i].flight_date.split('T')[0];
+                    console.log(time);
+                    result += "<br/>Departure: " + data[i].from_city;
+                    result += " Arrival: " + data[i].to_city;
+                    result += " Date: " + time;
+                    result += " Flight Number: " + data[i].flight_id;
+                }
+                if (result === "") {
+                    document.getElementById("carrierResults").innerHTML = "No Data Found";
+                }
+                console.log(result);
+                document.getElementById("carrierResults").innerHTML = result;
+            }).
+        catch(e => {
+            // alert(e)
+        });
+    });
+
     $('#login').click(() => {
         window.location.href = './login.html';
     })
@@ -212,11 +262,10 @@ $(document).ready(function () {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user_id: document.getElementById('add_flight_id').value,
-                date: document.getElementById('add_flight_date').value,
-                location_name: document.getElementById('add_to_city').value,
-                covid: document.getElementById('add_from_city').value,
-                flight_company: document.getElementById('add_flight_company').value
+                location_name: document.getElementById('add_location_name').value,
+                date: document.getElementById('add_date').value,
+                user_id: login_user_id,
+                covid: login_user_status
             })
         }).
         then(res => {
@@ -320,5 +369,49 @@ $(document).ready(function () {
                 });
         }
     });
+    checkFlight = () => {
+        fetch('https://covid-flight-backend.herokuapp.com/v1/getFlights', {
+            method: 'GET', // likewise we have DELETE, PUT, PATCH
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).
+        then(res => {
+                console.log(res.json);
+                if (res.status == 200) {
+                    console.log("Success");
+                    return res.json();
+    
+                } else if (res.status == 401) {
+                    throw new Error('Invalid Values');
+                } else {
+                    console.log(res.json);
+                }
+            })
+            .then(data => {
+                let result = false;
+                for (i = 0; i < data.length; i++) {
+                    let time = data[i].flight_date;
+                    let id = data[i].flight_id;
+                    console.log(time);
+                    console.log(id);
+                    if ((time == login_flight_date) && (id = login_flight_number)) {
+                        console.log("confirm");
+                        $("#trackingFlightStatus").html("Confirmed");
+                        $("#trackingFlightStatus").css( {"color": "red"});
+                        $("#riskImage").html('<img src="./img/cancel.png" alt="No Covid Patients Found" width="120" height="auto">');
+                        
+                    }
+                }
+                console.log(result);
+            }).
+        catch(e => {
+            // alert(e)
+        });
+    }
+    
+    checkFlight();
+    
 
 });
