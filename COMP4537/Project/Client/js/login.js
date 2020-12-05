@@ -64,50 +64,6 @@ $(document).ready(function() {
         }
       });
 
-
-    //add flight
-    $("#search_flight").click(() => {
-
-        if (!$('#flight_id').val()){
-            alert("You have to enter flight number");   
-        }
-        else if (!$('#flight_date').val()){
-            alert("You have to enter flight date");   
-        }
-        else {
-            fetch("https://covid-flight-backend.herokuapp.com/v1/getSingleFlight/'" + $('#flight_id').val() + "'/'" + $('#flight_date').val() + "'", {
-                    method: 'GET', // likewise we have DELETE, PUT, PATCH
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                }).
-                then(res => {
-                    if (res.status == 200) {
-                        console.log("Success");
-                        return res.json();
-                        
-                    } else if (res.status == 401) {
-                        throw new Error('Invalid Values');
-                    }else{
-                        console.log(res.json);
-                    }
-                })
-                .then(data => {
-                    if(data){
-                        $('#flightState').html('Confirmed');
-                    }
-                    else {
-                        $('#flightState').html('No case found');
-                    }
-                    $('#realSignUp').prop('disabled', false);
-                }).
-            catch(e => {
-                // alert(e)
-            });
-        }
-    });
-
     $('#realSignUp').click(()=> {
         fetch('https://covid-flight-backend.herokuapp.com/v1/register', {
             method: 'POST', // likewise we have DELETE, PUT, PATCH
