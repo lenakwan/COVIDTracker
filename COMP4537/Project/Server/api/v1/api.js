@@ -17,36 +17,36 @@ api.use(bodyParser.json()) // middleware
 api.use(cors());
 
 
-api.post('/login', authController.authUser); //used
-api.post('/register', authController.register); //used
+api.post('/login', authController.authUser);
+api.post('/register', authController.register);
 
 api.get('/', (request, response) => {
     response.json({ info: 'API Server is up and running, please request a valid user token.' })
   })
 
-api.get("/getFlights", flightController.validFlightData);   //used
+api.get("/getFlights", flightController.validFlightData);   
 
-api.get("/getSingleFlight/:flight_id/:flight_date", flightController.validSingleFlightData); //used
+api.get("/getSingleFlight/:flight_id/:flight_date", flightController.validSingleFlightData);
 
-api.get("/getCarrierFlights/:flight_company", flightController.validFlightCarrier); //to be implemented on tracking.html
+api.get("/getCarrierFlights/:flight_company", flightController.validFlightCarrier);
 
-api.get("/getArrival", flightController.validArrival);//to be implemented on tracking.html
+api.get("/getArrival", flightController.validArrival);
 
-api.get("/getDeparture", flightController.validDeparture);//to be implemented on tracking.html
+api.get("/getDeparture", flightController.validDeparture);
 
-api.post("/createFlightEntry", flightController.createFlight); //used
+api.post("/createFlightEntry", flightController.createFlight);
 
-api.delete("/deleteFlightEntry", flightController.deleteFlight); //used
+api.delete("/deleteFlightEntry", flightController.deleteFlight);
 
-api.put("/updateFlightEntry", flightController.updateFlight); //used
+api.put("/updateFlightEntry", flightController.updateFlight);
 
-api.get("/getAllLocations", locationController.validLocationData); //to be implemented on tracking.html
+api.get("/getAllLocations", locationController.validLocationData);
 
-api.post("/inputUserLocation", locationController.validLocationEntry); //used
+api.post("/inputUserLocation", locationController.validLocationEntry);
 
-api.delete("/deleteuserLocation", locationController.deleteUserLocation); //to be implemented on tracking.html
+api.delete("/deleteuserLocation", locationController.deleteUserLocation);
 
-api.get("/getUserLocations/:user_id", locationController.validUserLocations); //to be implemented on tracking.html
+api.get("/getUserLocations/:user_id", locationController.validUserLocations);
 
 
 module.exports= api;

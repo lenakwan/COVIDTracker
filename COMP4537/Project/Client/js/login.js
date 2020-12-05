@@ -35,7 +35,12 @@ $(document).ready(function() {
             throw new Error('Invalid credentials');
         })
         .then(data => {
+            console.log(data);
             localStorage.setItem('token', data.token);
+            localStorage.setItem('user_id', data.user_id);
+            localStorage.setItem('covid', data.covid);
+            localStorage.setItem('flight_id', data.flight_id);
+            localStorage.setItem('flight_date', data.flight_date);
             if (data.admin) {
                 window.location.href = './admin.html';
             }

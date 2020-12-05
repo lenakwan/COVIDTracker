@@ -55,22 +55,24 @@
           <p class="lead">My Locations</p>
           <div>
             <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
-              data-target="#displayLocation">
+              data-target="#displayLocation" id="getMyLocations">
               Display My Locations
             </button>
-            
+
             <div class="modal fade" id="displayLocation" tabindex="-1" role="dialog"
               aria-labelledby="displayLocationModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="displayLocationModalLabel">Display All Location</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="displayLocationModalLabel">Display All of My Locations</h5>
+                    <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    <div id="locationData"></div>
+                    <div id="myLocationData">
+
+                    </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -78,37 +80,37 @@
                 </div>
               </div>
             </div>
+
             <p class="lead"> </p>
-            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
-            data-target="#deleteLocation">
-            Delete Location Entry
-          </button>
-          <!-- #addLocation Modal -->
-          <div class="modal fade" id="deleteLocation" tabindex="-1" role="dialog"
-            aria-labelledby="deleteLocationModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="deleteLocationModalLabel">Delete My Location</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control" type="text" placeholder="Location Name" aria-label="location_name"
-                      id="delete_location_name">
-                    <input class="form-control" type="date" value="2020-11-19" id="delete_date">
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="add_location_submit">Create
-                    Entry</button>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal" data-target="#deleteLocation">
+              Delete Location Entry
+            </button>
+            <!-- #addLocation Modal -->
+            <div class="modal fade" id="deleteLocation" tabindex="-1" role="dialog"
+              aria-labelledby="deleteLocationModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteLocationModalLabel">Delete My Location</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="form-inline my-2 my-lg-0">
+                      <input class="form-control" type="text" placeholder="Location Name" aria-label="location_name"
+                        id="delete_location_name">
+                      <input class="form-control" type="date" value="2020-11-19" id="delete_date">
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="delete_location_submit">Delete
+                      Entry</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
             <p class="lead"> </p>
             <button type="button" class="btn btn-primary adminButton" data-toggle="modal" data-target="#addLocation">
@@ -174,11 +176,10 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <p>User Data</p>
+                      <p>Flight Data</p>
                       <div id="flightData">
 
                       </div>
-                      </form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -193,31 +194,34 @@
                 data-target="#searchSingleFlight">
                 Search DateNum
               </button>
-              
+
               <div class="modal fade" id="searchSingleFlight" tabindex="-1" role="dialog"
-              aria-labelledby="searchSingleFlightModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="searchSingleFlightModalLabel">Search for a Flight Based on Flight Number and Flight Date</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form class="form-inline my-2 my-lg-0">
-                      <input class="form-control" type="search" placeholder="Flight Number" aria-label="flight_id"
-                        id="search_flight_id">
+                aria-labelledby="searchSingleFlightModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="searchSingleFlightModalLabel">Search for a Flight Based on Flight
+                        Number and Flight Date</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control" type="search" placeholder="Flight Number" aria-label="flight_id"
+                          id="search_flight_id">
                         <input class="form-control" type="date" value="2020-11-19" id="search_flight_date">
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search_flight_submit">Search</button>
+                      </form>
+                      <div id="searchedFlight"></div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                        id="search_flight_submit">Search</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
 
               <p class="lead"> </p>
@@ -227,28 +231,30 @@
               </button>
 
               <div class="modal fade" id="searchCarrier" tabindex="-1" role="dialog"
-              aria-labelledby="searchCarrierFlightModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="searchCarrierFlightModalLabel">Search for Flights based on Airline Carrier</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form class="form-inline my-2 my-lg-0">
-                      <input class="form-control" type="search" placeholder="Flight Company" aria-label="flight_company"
-                        id="search_flight_company">
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search_carrier_submit">Search</button>
+                aria-labelledby="searchCarrierFlightModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="searchCarrierFlightModalLabel">Search for Flights based on Airline
+                        Carrier</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control" type="search" placeholder="Flight Company"
+                          aria-label="flight_company" id="search_flight_company">
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                        id="search_carrier_submit">Search</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
             </div>
           </div>
@@ -257,11 +263,10 @@
         <div class="jumbotron">
           <p class="lead">All Locations</p>
           <div>
-            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
-              data-target="#allLocations">
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal" data-target="#allLocations">
               Display All Locations
             </button>
-            
+
             <div class="modal fade" id="allLocations" tabindex="-1" role="dialog"
               aria-labelledby="allLocationsModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -274,12 +279,12 @@
                   </div>
                   <div class="modal-body">
                     <div id="displayLocationData">
-                      location data goes here
+
                     </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    
+
                   </div>
                 </div>
               </div>
@@ -290,8 +295,7 @@
         <div class="jumbotron text-center">
           <p class="lead">YVR Airport</p>
           <div>
-            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
-              data-target="#checkArrivals">
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal" data-target="#checkArrivals">
               Check Arrive
             </button>
 
@@ -307,12 +311,12 @@
                   </div>
                   <div class="modal-body">
                     <div id="displayArrivalData">
-                      arrival data goes here
+                      loading...
                     </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    
+
                   </div>
                 </div>
               </div>
@@ -324,27 +328,28 @@
               Check Depart
             </button>
             <div class="modal fade" id="checkDepartures" tabindex="-1" role="dialog"
-            aria-labelledby="checkDeparturesModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="checkDeparturesModalLabel">Check Departures for COIVD Positive Flights</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div id="displayDepartureData">
-                    Departure data goes here
+              aria-labelledby="checkDeparturesModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="checkDeparturesModalLabel">Check Departures for COIVD Positive Flights
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  
+                  <div class="modal-body">
+                    <div id="displayDepartureData">
+                      loading...
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </div>
       </div>
