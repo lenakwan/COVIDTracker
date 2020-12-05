@@ -43,10 +43,10 @@
           <p class="lead">Flight Status</p>
           <div class="row">
             <div class="col-sm">
-              <p>Flight: <br/><span id="trackingFlightNumber"></span></p>
+              <p>Flight: <br /><span id="trackingFlightNumber"></span></p>
             </div>
-            <div class="col-sm" >
-              <p>Status: <br/><span id="trackingFlightStatus"></span></p>
+            <div class="col-sm">
+              <p>COVID: <br /><span id="trackingFlightStatus"></span></p>
             </div>
           </div>
         </div>
@@ -54,8 +54,8 @@
         <div class="jumbotron">
           <p class="lead">My Locations</p>
           <div>
-            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
-              data-target="#displayLocation" id="getMyLocations">
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal" data-target="#displayLocation"
+              id="getMyLocations">
               Display My Locations
             </button>
 
@@ -65,7 +65,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="displayLocationModalLabel">Display All of My Locations</h5>
-                    <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -80,7 +80,7 @@
                 </div>
               </div>
             </div>
-https://www.flaticon.com/aut
+
             <p class="lead"> </p>
             <button type="button" class="btn btn-primary adminButton" data-toggle="modal" data-target="#deleteLocation">
               Delete Location Entry
@@ -105,7 +105,8 @@ https://www.flaticon.com/aut
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="delete_location_submit">Delete
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                      id="delete_location_submit">Delete
                       Entry</button>
                   </div>
                 </div>
@@ -148,7 +149,9 @@ https://www.flaticon.com/aut
         <div class="jumbotron">
           <p class="lead">Risk</p>
           <div>
-            Display A Risk Image
+            <div id="riskImage">
+              <img src="./img/check.png" alt="No Covid Patients Found" width="120" height="auto">
+            </div>
           </div>
         </div>
       </div>
@@ -246,6 +249,7 @@ https://www.flaticon.com/aut
                         <input class="form-control" type="search" placeholder="Flight Company"
                           aria-label="flight_company" id="search_flight_company">
                       </form>
+                      <div id="carrierResults"></div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

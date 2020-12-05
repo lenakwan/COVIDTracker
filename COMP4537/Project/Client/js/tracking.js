@@ -13,8 +13,9 @@ $(document).ready(function () {
     // if token
     console.log(user);
     $("#loginUserName").html(user.user_name);
-
+    $("#trackingFlightStatus").html("None");
     $("#trackingFlightNumber").html(login_flight_number);
+    $("#trackingFlightStatus").css( {"color": "green"});
     
   
     //display all flights
@@ -202,6 +203,48 @@ $(document).ready(function () {
         });
     });
 
+    $("#search_carrier_submit").click(() => {
+        fetch('https://covid-flight-backend.herokuapp.com/v1/getCarrierFlights/' + "'"+ $('#search_flight_company').val() +"'", {
+            method: 'GET', // likewise we have DELETE, PUT, PATCH
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).
+        then(res => {
+                console.log(res.json);
+                if (res.status == 200) {
+                    console.log("Success");
+                    return res.json();
+
+                } else if (res.status == 401) {
+                    throw new Error('Invalid Values');
+                } else {
+                    console.log(res.json);
+                }
+            })
+            .then(data => {
+                let result = "";
+                for (i = 0; i < data.length; i++) {
+                    
+                    let time = data[i].flight_date.split('T')[0];
+                    console.log(time);
+                    result += "<br/>Departure: " + data[i].from_city;
+                    result += " Arrival: " + data[i].to_city;
+                    result += " Date: " + time;
+                    result += " Flight Number: " + data[i].flight_id;
+                }
+                if (result === "") {
+                    document.getElementById("carrierResults").innerHTML = "No Data Found";
+                }
+                console.log(result);
+                document.getElementById("carrierResults").innerHTML = result;
+            }).
+        catch(e => {
+            // alert(e)
+        });
+    });
+
     $('#login').click(() => {
         window.location.href = './login.html';
     })
@@ -353,14 +396,13 @@ $(document).ready(function () {
                     let id = data[i].flight_id;
                     console.log(time);
                     console.log(id);
-                    if (time == login_flight_date && (id = login_flight_number)) {
+                    if ((time == login_flight_date) && (id = login_flight_number)) {
                         console.log("confirm");
                         $("#trackingFlightStatus").html("Confirmed");
                         $("#trackingFlightStatus").css( {"color": "red"});
+                        $("#riskImage").html('<img src="./img/cancel.png" alt="No Covid Patients Found" width="120" height="auto">');
+                        
                     }
-                    console.log("no")
-                    return "Unconfirmed";
-    
                 }
                 console.log(result);
             }).
