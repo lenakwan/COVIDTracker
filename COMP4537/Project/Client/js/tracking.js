@@ -238,7 +238,7 @@ $(document).ready(function () {
                     result += "<br/>Departure: " + data[i].from_city;
                     result += " Arrival: " + data[i].to_city;
                     result += " Date: " + time;
-                    result += " Flight Number: " + data[i].flight_id;
+                    result += " Flight: " + data[i].flight_id;
                 }
                 if (result === "") {
                     document.getElementById("carrierResults").innerHTML = "No Data Found";

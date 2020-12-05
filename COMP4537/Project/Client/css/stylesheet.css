@@ -49,3 +49,7 @@ body{
 #signUpMoment{
     display: none;
 }
+
+#carrierResults{
+    font-size: 0.8em;
+}
