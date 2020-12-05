@@ -153,6 +153,10 @@ $(document).ready(function () {
         });
     });
 
+    $('#login').click(()=>{
+        window.location.href = './login.html';
+    })
+
     $('#signout').click(() => {
         localStorage.setItem('token', null);
         window.location.href = './login.html';
