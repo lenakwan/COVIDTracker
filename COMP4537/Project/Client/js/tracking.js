@@ -46,6 +46,114 @@ $(document).ready(function () {
         });
     });
 
+    $("#allLocations").click(() => {
+        fetch('https://covid-flight-backend.herokuapp.com/v1/getAllLocations', {
+            method: 'GET', // likewise we have DELETE, PUT, PATCH
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).
+        then(res => {
+                console.log(res.json);
+                if (res.status == 200) {
+                    console.log("Success");
+                    return res.json();
+
+                } else if (res.status == 401) {
+                    throw new Error('Invalid Values');
+                } else {
+                    console.log(res.json);
+                }
+            })
+            .then(data => {
+                let result = "";
+                for (i = 0; i< data.length; i++){
+                    let time = data[i].date.split('T')[0];
+                    console.log(time);
+                    result += "<p>Location: "+ data[i].location_name + " Date: " 
+                    + time + " Covid-19: " + data[i].covid +"</p>"
+                }
+                console.log(result);
+                document.getElementById("displayLocationData").innerHTML = result;
+            }).
+        catch(e => {
+            // alert(e)
+        });
+    });
+
+    $("#checkArrivals").click(() => {
+        fetch('https://covid-flight-backend.herokuapp.com/v1/getArrival', {
+            method: 'GET', // likewise we have DELETE, PUT, PATCH
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).
+        then(res => {
+                console.log(res.json);
+                if (res.status == 200) {
+                    console.log("Success");
+                    return res.json();
+
+                } else if (res.status == 401) {
+                    throw new Error('Invalid Values');
+                } else {
+                    console.log(res.json);
+                }
+            })
+            .then(data => {
+                let result = "";
+                for (i = 0; i< data.length; i++){
+                    let time = data[i].flight_date.split('T')[0];
+                    console.log(time);
+                    result += "<p>Flight: "+ data[i].flight_id + " Date: " 
+                    + time + " From: " + data[i].from_city + " To: "+ data[i].to_city +"</p>"
+                }
+                console.log(result);
+                document.getElementById("displayArrivalData").innerHTML = result;
+            }).
+        catch(e => {
+            // alert(e)
+        });
+    });
+
+    $("#checkDepartures").click(() => {
+        fetch('https://covid-flight-backend.herokuapp.com/v1/getDeparture', {
+            method: 'GET', // likewise we have DELETE, PUT, PATCH
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).
+        then(res => {
+                console.log(res.json);
+                if (res.status == 200) {
+                    console.log("Success");
+                    return res.json();
+
+                } else if (res.status == 401) {
+                    throw new Error('Invalid Values');
+                } else {
+                    console.log(res.json);
+                }
+            })
+            .then(data => {
+                let result = "";
+                for (i = 0; i< data.length; i++){
+                    let time = data[i].flight_date.split('T')[0];
+                    console.log(time);
+                    result += "<p>Flight: "+ data[i].flight_id + " Date: " 
+                    + time + " From: " + data[i].from_city + " To: "+ data[i].to_city +"</p>"
+                }
+                console.log(result);
+                document.getElementById("displayDepartureData").innerHTML = result;
+            }).
+        catch(e => {
+            // alert(e)
+        });
+    });
+
     $('#login').click(()=>{
         window.location.href = './login.html';
     })
@@ -57,14 +165,14 @@ $(document).ready(function () {
 
 
     $('#search_flight_submit').click(()=> {
-        if (!$('#flight_id').val()){
+        if (!$('#search_flight_id').val()){
             alert("You have to enter flight number");   
         }
         else if (!$('#search_flight_date').val()){
             alert("You have to enter flight date");   
         }
         else {
-            fetch("https://covid-flight-backend.herokuapp.com/v1/getSingleFlight/'" + $('#flight_id').val() + "'/'" + $('#search_flight_date').val() + "'", {
+            fetch("https://covid-flight-backend.herokuapp.com/v1/getSingleFlight/'" + $('#search_flight_id').val() + "'/'" + $('#search_flight_date').val() + "'", {
                 method: 'GET', // likewise we have DELETE, PUT, PATCH
                 headers: {
                     'Accept': 'application/json',
@@ -86,7 +194,7 @@ $(document).ready(function () {
             .then(data => {
                 console.log(data);
                 if(data){
-                    let txt = "<b>Here's brief information about " + $('#flight_id').val() + " on " + $('#flight_date').val() + '</b>';
+                    let txt = "<b>Here's brief information about " + $('#search_flight_id').val() + " on " + $('#search_flight_date').val() + '</b>';
                     txt += "<br/><br/>Flight Company: " + data.flight_company;
                     txt += "<br/>Departure: " + data.from_city;
                     txt += "<br/>Arrival: " + data.to_city;
