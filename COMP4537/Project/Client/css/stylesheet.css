@@ -1,27 +1,33 @@
-.opaqueBox{
-    opacity: 0.7;
-}
 
-#navBar{
-    z-index: 10;
+.opaqueBox{
+    background-color: rgba(255,255,255,0.8);
+}
+.modal-backdrop {
+    opacity: 0;
+    z-index: -1;
+    background-color: rgba(79,79,81,100);
+  }
+
+.adminButton{
+    background-color: #86BBD8;
+    border-color: #86BBD8;
 }
 body{
     background-image: url("../img/yvr-background.jpg");
     background-size:     cover;                
     background-repeat:   no-repeat;
-    background-position: center center;   
+    background-position: center center; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+      
 }
 
 #centerWrap{
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index:-1;
+    justify-content: space-around;
 }
 .flightInfo{
     background-color:blue;
-    
 }
 .flightInfoCon{
     width: 30%;
