@@ -65,8 +65,7 @@ $(document).ready(function() {
             alert("You have to enter flight date");   
         }
         else {
-            // fetch('https://covid-flight-backend.herokuapp.com/v1/createFlightEntry', {
-            fetch("http://localhost:3000/v1/getSingleFlight/'" + $('#flight_id').val() + "'/'" + $('#flight_date').val() + "'", {
+            fetch("https://covid-flight-backend.herokuapp.com/v1/getSingleFlight/'" + $('#flight_id').val() + "'/'" + $('#flight_date').val() + "'", {
                     method: 'GET', // likewise we have DELETE, PUT, PATCH
                     headers: {
                         'Accept': 'application/json',
@@ -101,8 +100,7 @@ $(document).ready(function() {
     });
 
     $('#realSignUp').click(()=> {
-        // fetch('https://covid-flight-backend.herokuapp.com/v1/register', {
-        fetch('http://localhost:3000/v1/register', {
+        fetch('https://covid-flight-backend.herokuapp.com/v1/register', {
             method: 'POST', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
