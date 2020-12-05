@@ -1,69 +1,100 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covid 19 Tracker</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/stylesheet.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covid 19 Tracker</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/stylesheet.css">
 </head>
 
 <body>
-    <div class="container" id="navBar">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">YVR Covid Tracking</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+  <div class="container-fluid" id="navBar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">YVR Covid Tracking</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+
+        </ul>
+        <button class="btn btn-outline-success" type="button">Login</button>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container d-flex align-items-center min-vh-100 ">
+    
+    <div class="container opaqueBox" id="centerWrap ">
+      <h5 class="display-4 text-center">Hello, <span id="loginUserName"></span></h5>
+      <p class="lead text-center">Welcome to your Covid Flight Tracking Dashboard.</p>
+      <div class="row justify-content-center">
+        
+        <div class="jumbotron text-center">
           
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">About Us</a>
-                </li>
-                
-              </ul>
-              <button class="btn btn-outline-success" type="button">Login</button>
-            </div>
-          </nav>
+
+          <p class="lead">Flights</p>
+          <div class='flightInfo'>
+            will display flights
+          </div>
+        </div>
+        <div class="jumbotron" >
+          <p class="lead">Locations</p>
+          <div class='flightInfo'>
+            will display locations
+          </div>
+        </div>
+        <div class="jumbotron" >
+          <p class="lead">Risk</p>
+          <div class='flightInfo'>
+            will display risk
+          </div>
+        </div>        
+      </div>
+      <div class="row justify-content-center">
+        <div class="jumbotron   text-center">
+
+          <p class="lead">Search Flights</p>
+          <div class='flightInfo'>
+            will display flights
+          </div>
+        </div>
+        <div class="jumbotron" >
+          <p class="lead">Search Locations</p>
+          <div class='flightInfo'>
+            Search Locations
+          </div>
+        </div>
+        <div class="jumbotron" >
+          <p class="lead">Report Positive</p>
+          <div class='flightInfo'>
+            Report positive case
+          </div>
+        </div>        
+      </div>
     </div>
-    <div class="container" id="centerWrap">
-       
-      
-        <div class="jumbotron flightInfoCon opaqueBox">
-          
-            <p class="lead">Flights</p>
-            <div class='flightInfo' >
-              will display flights
-            </div>
-          </div>   
-          <div class="jumbotron flightInfoCon" id ="opaqueBox">
-            <p class="lead">Locations</p>
-            <div class='flightInfo' >
-              will display locations
-            </div>
-            </div>   
-            <div class="jumbotron flightInfoCon" id ="opaqueBox">
-              <p class="lead">Risk</p>
-              <div class='flightInfo'>
-                will display risk
-              </div>
-              </div>   
-    </div>
+  </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
 </body>
 
 </html>
