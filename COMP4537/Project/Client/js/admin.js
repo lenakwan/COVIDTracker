@@ -94,7 +94,7 @@ $(document).ready(function () {
                 'authorization': token
             },
             body: JSON.stringify({
-                flight_id: document.getElementById('edit_flight_id').value,
+                flight_id: "'" + document.getElementById('edit_flight_id').value + "'",
                 flight_date: document.getElementById('edit_flight_date').value,
                 to_city: document.getElementById('edit_to_city').value,
                 from_city: document.getElementById('edit_from_city').value,
