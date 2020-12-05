@@ -24,7 +24,8 @@ $(document).ready(function () {
             method: 'GET', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
         }).
         then(res => {
@@ -60,7 +61,8 @@ $(document).ready(function () {
             method: 'GET', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
         }).
         then(res => {
@@ -96,7 +98,8 @@ $(document).ready(function () {
             method: 'GET', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
         }).
         then(res => {
@@ -132,7 +135,8 @@ $(document).ready(function () {
             method: 'GET', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
         }).
         then(res => {
@@ -168,7 +172,8 @@ $(document).ready(function () {
             method: 'GET', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
         }).
         then(res => {
@@ -208,7 +213,8 @@ $(document).ready(function () {
             method: 'GET', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
         }).
         then(res => {
@@ -259,7 +265,8 @@ $(document).ready(function () {
             method: 'POST', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
             body: JSON.stringify({
                 location_name: document.getElementById('add_location_name').value,
@@ -298,7 +305,8 @@ $(document).ready(function () {
                 method: 'DELETE', // likewise we have DELETE, PUT, PATCH
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': token
                 },
                 body: JSON.stringify({
                     location_name: document.getElementById('delete_location_name').value,
@@ -374,7 +382,8 @@ $(document).ready(function () {
             method: 'GET', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
         }).
         then(res => {
