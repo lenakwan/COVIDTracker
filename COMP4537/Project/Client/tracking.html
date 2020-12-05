@@ -34,59 +34,98 @@
   </div>
 
   <div class="container d-flex align-items-center min-vh-100 ">
-    
     <div class="container opaqueBox" id="centerWrap ">
-      <h5 class="display-4 text-center">Hello, <span id="loginUserName"></span></h5>
+    <h5 class="display-4 text-center">Hello, <span id="loginUserName"></span></h5>
       <p class="lead text-center">Welcome to your Covid Flight Tracking Dashboard.</p>
       <div class="row justify-content-center">
         
         <div class="jumbotron text-center">
-          
-
           <p class="lead">Flight Status</p>
           <div class="row">
-            <div class="col-sm">
+            <div class="col-sm" id = "trackingFlightNumber">
               left
             </div>
-            <div class="col-sm">
+            <div class="col-sm" id = "trackingFlightStatus">
               right
             </div>
+            </div>
         </div>
+
         <div class="jumbotron" >
-          <p class="lead">Locations</p>
-          <div class='flightInfo'>
-            will display locations
+          <p class="lead">My Locations</p>
+          <div>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#displayLocation">
+              Display My Locations
+            </button>
+            <p class="lead"> </p>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#addLocation">
+              Add A New Location
+            </button>
           </div>
         </div>
+
         <div class="jumbotron" >
           <p class="lead">Risk</p>
-          <div class='flightInfo'>
-            will display risk
+          <div >
+            Display A Risk Image
           </div>
         </div>        
       </div>
+    
       <div class="row justify-content-center">
-        <div class="jumbotron   text-center">
 
+        <div class="jumbotron">
           <p class="lead">Search Flights</p>
-          <div class='flightInfo'>
-            will display flights
+          <div>
+            <div>
+              <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#searchAll">
+              Display AllFlights
+            </button>
+            <p class="lead"> </p>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#searchSingleFlight">
+              Search DateNum
+            </button>
+            <p class="lead"> </p>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#searchCarrier">
+              Search By Carrier
+            </button>
+            </div>
           </div>
         </div>
+
         <div class="jumbotron" >
           <p class="lead">Search Locations</p>
-          <div class='flightInfo'>
-            Search Locations
+          <div>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#searchLocationName">
+              Search A Location
+            </button>
+            <p class="lead"></p>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#searchPositiveLocation">
+              Display Confirmed
+            </button>
           </div>
         </div>
-        <div class="jumbotron" >
-          <p class="lead">Report Positive</p>
-          <div class='flightInfo'>
-            Report positive case
+
+        <div class="jumbotron text-center" >
+          <p class="lead">Test Results</p>
+          <div>
+            <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
+              data-target="#modifyUserCOVID">
+              Report A Result
+            </button>
+          </div>
           </div>
         </div>        
       </div>
     </div>
+  </div>
   </div>
 
 

@@ -13,7 +13,7 @@ $(document).ready(function() {
       $("#signInButton").click((e)=>{
         e.preventDefault();
         // fetch('https://covid-flight-backend.herokuapp.com/v1/login',{
-        fetch('http://localhost:3000/v1/login',{
+        fetch('https://covid-flight-backend.herokuapp.com/v1/login',{
             method: 'POST', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
@@ -35,7 +35,7 @@ $(document).ready(function() {
             if (data.admin) {
                 window.location.href = './admin.html';
             }
-            window.location.href = './index.html';
+            window.location.href = './tracking.html';
         }).
         catch(e => alert(e));
       });
