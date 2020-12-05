@@ -10,9 +10,13 @@ $(document).ready(function() {
         $("#signInMoment").hide();
       });
 
+      $('#toMain').click(()=>{
+        window.location.href = './index.html';
+    });
+
+
       $("#signInButton").click((e)=>{
         e.preventDefault();
-        // fetch('https://covid-flight-backend.herokuapp.com/v1/login',{
         fetch('https://covid-flight-backend.herokuapp.com/v1/login',{
             method: 'POST', // likewise we have DELETE, PUT, PATCH
             headers: {
@@ -73,7 +77,6 @@ $(document).ready(function() {
                     }
                 }).
                 then(res => {
-                    console.log(res);
                     if (res.status == 200) {
                         console.log("Success");
                         return res.json();
@@ -125,7 +128,7 @@ $(document).ready(function() {
         .then(data => {
             console.log("??")
             localStorage.setItem('token', data.token);
-            window.location.href = './index.html';
+            window.location.href = './tracking.html';
         }).
         catch(e => {
             // alert(e)

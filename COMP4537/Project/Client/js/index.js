@@ -1,42 +1,49 @@
-const token = localStorage.getItem("token");
-if(token == 'null'){
-    window.location.href = './login.html';
-}
-const user= JSON.parse(atob(token.split('.')[1]));
-
 $(document).ready(function() {
-    // if token
-    console.log(user);
-    $("#loginUserName").html(user.user_name);
     $("#search").click(()=> {
 
-        fetch('https://covid-flight-backend.herokuapp.com/v1/getFlights', {
-            method: 'GET', // likewise we have DELETE, PUT, PATCH
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                // username: document.getElementById('username').value,
-                // password:  document.getElementById('password').value
+        if (!$('#flight_id').val()){
+            alert("You have to enter flight number");   
+        }
+        else if (!$('#flight_date').val()){
+            alert("You have to enter flight date");   
+        }
+        else {
+            fetch("https://covid-flight-backend.herokuapp.com/v1/getSingleFlight/'" + $('#flight_id').val() + "'/'" + $('#flight_date').val() + "'", {
+                method: 'GET', // likewise we have DELETE, PUT, PATCH
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }).
+            then(res => {
+                if (res.status == 200) {
+                    console.log("Success");
+                    return res.json();
+                } else if (res.status == 401) {
+                    throw new Error('Invalid Values');
+                }else{
+                    console.log(res.json);
+                }
             })
-        }).
-        then(res => {
-            if(res.status == 200) {
-                return res.json();
-            }
-            throw new Error('Invalid credentials');
-        })
-        .then(data => {
-            localStorage.setItem('token', data.token);
-            window.location.href = './contacts.html';
-        }).
-        catch(e => alert(e));
-
+            .then(data => {
+                if(data){
+                    let txt = "<b>Here's brief information about " + $('#flight_id').val() + " on " + $('#flight_date').val() + '</b>';
+                    txt += "<br/><br/>Flight Company: " + data.flight_company;
+                    txt += "<br/>Departure: " + data.from_city;
+                    txt += "<br/>Arrival: " + data.to_city;
+                    $('#result').html(txt);
+                }
+                else {
+                    $('#result').html('<b>Unable to find the flight information.</b>');
+                }
+            })
+            .catch(e => {
+                // alert(e)
+            });
+        }
     })
 
-    $('#signout').click(()=>{
-        localStorage.setItem('token', null);
+    $('#toSign').click(()=>{
         window.location.href = './login.html';
     });
 

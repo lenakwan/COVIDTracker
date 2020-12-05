@@ -26,22 +26,26 @@
                 </li>
                 
               </ul>
-              <button class="btn btn-outline-secondary" type="button" id="signout">Sign Out</button>
+              <button class="btn btn-outline-success" type="button" id="toSign">Sign In</button>
             </div>
           </nav>
     </div>
     <div class="container" id="centerWrap">
        
         <div class="jumbotron opaqueBox">
-            <h1 class="display-4">Welcome to Vancouver, <span id="loginUserName"></span>!</h1>
+            <h1 class="display-4">Welcome to Vancouver!</h1>
             <p class="lead">Thank you for visiting YVR. Please keep track of your flights and check in at locations here.</p>
             <hr class="my-4">
             <p>Enter your flight number here.</p>
             <p class="lead">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-1" type="search" placeholder="Flight Number" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search">Search</button>
-                  </form>
+                
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control" type="date" value="2020-11-19" id="flight_date">
+                <input class="form-control" type="text" placeholder="Flight Number" aria-label="flight_id" id="flight_id">
+                <button type="button" class="btn btn-outline-success" id="search">Search</button>
+              </form>
+              <div id="result"></div>
+
             </p>
           </div>   
     </div>
