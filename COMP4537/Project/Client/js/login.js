@@ -41,6 +41,7 @@ $(document).ready(function() {
             localStorage.setItem('covid', data.covid);
             localStorage.setItem('flight_id', data.flight_id);
             localStorage.setItem('flight_date', data.flight_date);
+            localStorage.setItem('admin', data.admin);
             if (data.admin) {
                 window.location.href = './admin.html';
             }
@@ -131,7 +132,6 @@ $(document).ready(function() {
             }
         })
         .then(data => {
-            console.log("??")
             localStorage.setItem('token', data.token);
             window.location.href = './tracking.html';
         }).

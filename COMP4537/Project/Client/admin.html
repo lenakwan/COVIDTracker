@@ -59,17 +59,15 @@
                   </div>
                   <div class="modal-body" >
                     <form class="form-inline my-2 my-lg-0">
-                      
                       <input class="form-control" type="text" placeholder="Flight Number" aria-label="flight_id"
                         id="add_flight_id">
-                    
                       <input class="form-control" type="text" placeholder="Arrival City" aria-label="to_city"
                         id="add_to_city">
                       <input class="form-control" type="text" placeholder="Departure City" aria-label="from_city"
                         id="add_from_city">
                       <input class="form-control" type="text" placeholder="Flight Carrier" aria-label="flight_company"
                         id="add_flight_company">
-                        <input class="form-control" type="date" value="2020-11-19" id="flight_date">
+                        <input class="form-control" type="date" value="2020-11-19" id="add_flight_date">
                     </form>
                   </div>
                   <div class="modal-footer">
@@ -86,7 +84,7 @@
           <div class="jumbotron">
             <p class="lead">Remove Flights</p>
             <button type="button" class="btn btn-primary adminButton" data-toggle="modal"
-              data-target="#deleteFlightModal">
+              data-target="#deleteFlightModal" id="deleteFlight">
               Delete Flight
             </button>
             <!-- DELETE FLIGHT MODAL -->
@@ -100,7 +98,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
+                  <div class="modal-body" id="#deleteList">
                     <form class="form-inline my-2 my-lg-0">
                       <input class="form-control" type="search" placeholder="Flight Number" aria-label="flight_id"
                         id="flight_id">
@@ -167,9 +165,9 @@
               Display Flights
             </button>
             <!-- EDIT FLIGHT MODAL -->
-            <div class="modal fade" id="displayFlightsModal" tabindex="-1" role="dialog"
+            <div class="modal fade overflow-auto" id="displayFlightsModal" tabindex="-1" role="dialog"
               aria-labelledby="displayFlightsModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-scrollable" role="document">
+              <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="displayUsersModalLabel">Display Data of All COVID Positive Flights</h5>

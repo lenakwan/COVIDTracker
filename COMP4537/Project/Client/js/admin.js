@@ -3,7 +3,6 @@ if (token == 'null') {
     window.location.href = './login.html';
 }
 const user = JSON.parse(atob(token.split('.')[1]));
-
 $(document).ready(function () {
     // if token
     console.log(user);
@@ -11,11 +10,13 @@ $(document).ready(function () {
 
     //add flight
     $("#add_flight_submit").click(() => {
-        fetch('https://covid-flight-backend.herokuapp.com/v1/createFlightEntry', {
+        fetch('http://localhost:3000/v1/createFlightEntry', {
+        // fetch('https://covid-flight-backend.herokuapp.com/v1/createFlightEntry', {
             method: 'POST', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
             body: JSON.stringify({
                 flight_id: document.getElementById('add_flight_id').value,
@@ -33,6 +34,8 @@ $(document).ready(function () {
 
                 } else if (res.status == 401) {
                     throw new Error('Invalid Values');
+                } else if (res.status == 402) {
+                    throw new Error('Unauthorized User!');
                 } else {
                     console.log(res.json);
                 }
@@ -41,18 +44,19 @@ $(document).ready(function () {
                 alert("Data Entry Success.");
             }).
         catch(e => {
-            // alert(e)
+            alert(e)
         });
 
     });
 
-    //delete flight
     $("#delete_flight_submit").click(() => {
         fetch('https://covid-flight-backend.herokuapp.com/v1/deleteFlightEntry', {
             method: 'DELETE', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
+
             },
             body: JSON.stringify({
                 flight_id: document.getElementById('flight_id').value,
@@ -86,7 +90,8 @@ $(document).ready(function () {
             method: 'PUT', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
             body: JSON.stringify({
                 flight_id: '\''+document.getElementById('edit_flight_id').value + '\'',
@@ -116,13 +121,14 @@ $(document).ready(function () {
         });
     });
 
-      //display all flights
-      $("#displayAll").click(() => {
+    //display all flights
+    $("#displayAll").click(() => {
         fetch('https://covid-flight-backend.herokuapp.com/v1/getFlights', {
             method: 'GET', // likewise we have DELETE, PUT, PATCH
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': token
             },
         }).
         then(res => {
