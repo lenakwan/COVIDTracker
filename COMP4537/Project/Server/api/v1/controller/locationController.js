@@ -19,7 +19,7 @@ validLocationData= async (req,res) => {
     }
 }
 
-validLocationEntry = (req,res)=>{
+validLocationEntry = async (req,res)=>{
     let user;
     if (req.headers && req.headers.authorization){
         user = await validateToken(req.headers.authorization);
@@ -40,7 +40,7 @@ validLocationEntry = (req,res)=>{
     }
 }
 
-deleteUserLocation = (req,res) =>{
+deleteUserLocation = async (req,res) =>{
 
     let user;
     if (req.headers && req.headers.authorization){
