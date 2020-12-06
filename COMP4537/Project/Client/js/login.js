@@ -35,7 +35,6 @@ $(document).ready(function() {
             throw new Error('Invalid credentials');
         })
         .then(data => {
-            console.log(data);
             localStorage.setItem('token', data.token);
             localStorage.setItem('user_id', data.user_id);
             localStorage.setItem('covid', data.covid);
@@ -45,7 +44,9 @@ $(document).ready(function() {
             if (data.admin) {
                 window.location.href = './admin.html';
             }
-            window.location.href = './tracking.html';
+            else{            
+                window.location.href = './tracking.html';
+            }
         }).
         catch(e => alert(e));
       });
@@ -89,6 +90,10 @@ $(document).ready(function() {
         })
         .then(data => {
             localStorage.setItem('token', data.token);
+            alert ()
+            if (data.admin) {
+                window.location.href = './admin.html';
+            }
             window.location.href = './tracking.html';
         }).
         catch(e => {
