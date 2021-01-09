@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     //add flight
     $("#add_flight_submit").click(() => {
-        fetch('http://localhost:3000/v1/createFlightEntry', {
+        fetch('https://covid-flight-backend.herokuapp.com/v1/createFlightEntry', {
         // fetch('https://covid-flight-backend.herokuapp.com/v1/createFlightEntry', {
             method: 'POST', // likewise we have DELETE, PUT, PATCH
             headers: {
@@ -121,6 +121,39 @@ $(document).ready(function () {
         });
     });
 
+    retreiveToDo = () =>{
+        fetch('http://localhost:3000/getTodos', {
+            method: 'GET', 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': token
+            },
+        }).
+        then(res => {
+                console.log(res.json);
+                if (res.status == 200) {
+                    console.log("Success");
+                    return res.json();
+
+                } else if (res.status == 401) {
+                    throw new Error('Invalid Values');
+                } else {
+                    console.log(res.json);
+                }
+            })
+            .then(data => {
+                let result = "";
+                for (i = 0; i< data[0].items.length; i++){
+                    result += "<li>"+ data[0].items[i] + "</li> " 
+                }
+                document.getElementById("items").innerHTML = result;
+            }).
+        catch(e => {
+           console.log(e);
+        });
+    }
+    }
     //display all flights
     $("#displayAll").click(() => {
         fetch('https://covid-flight-backend.herokuapp.com/v1/getFlights', {

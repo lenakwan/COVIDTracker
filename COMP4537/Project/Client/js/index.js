@@ -27,7 +27,7 @@ $(document).ready(function() {
             })
             .then(data => {
                 if(data){
-                    let txt = "<b>Here's brief information about " + $('#flight_id').val() + " on " + $('#flight_date').val() + '</b>';
+                    let txt = "<b>Be cautious! A Passenger tested positive on Flight " + $('#flight_id').val() + " on " + $('#flight_date').val() + '</b>';
                     txt += "<br/><br/>Flight Company: " + data.flight_company;
                     txt += "<br/>Departure: " + data.from_city;
                     txt += "<br/>Arrival: " + data.to_city;
@@ -38,7 +38,7 @@ $(document).ready(function() {
                 }
             })
             .catch(e => {
-                // alert(e)
+                alert("Unable to find the flight information.")
             });
         }
     })
