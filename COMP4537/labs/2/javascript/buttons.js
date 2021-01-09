@@ -17,6 +17,10 @@ function generateButtons(n){
         button.addEventListener("click",onClick);
         buttonDiv.appendChild(button);
     }
+    setTimeout (function(){
+        buttonDiv.style.transform = 'rotate(90deg)';
+    }, 2000);
+    
     
 }
 class Recipe {
@@ -58,3 +62,4 @@ generateButtons(userInput);
 
 let newRecipe = new Recipe("Ramen", 1, ["noodles", "katsuoboshi", "menma", "sliced pork", "egg", "scallions"]);
 newRecipe.print();
+

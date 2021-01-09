@@ -1,7 +1,10 @@
 $( document ).ready(function() {
     $('#submitButton').click(()=>{
-        if($('#word').val() == '' || $('#definition').val() == ''){
+        if($('#word').val() == '' || $('#definition').val().trim() == ''){
             $('#display').html("Can't be empty");
+        }
+        else if(!isLetter($('#word').val())){
+            $('#display').html("Invalid Word");
         }
         else{
             onSubmit($('#word').val(), $('#definition').val());
@@ -15,6 +18,11 @@ $( document ).ready(function() {
         window.location.replace("../../index.html");
     });
 });
+
+isLetter = (s) =>
+{
+  return s.match("^[a-zA-Z\(\)]+$");    
+}
 
 async function onSubmit(word, definition){
     let xhttp = new XMLHttpRequest();

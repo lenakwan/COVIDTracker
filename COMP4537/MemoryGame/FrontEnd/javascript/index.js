@@ -37,9 +37,19 @@ function Button(boolean){
 }
 
 terminateGame = () => {
-    console.log("clicked Terminate");
+    let scoreB = document.getElementById("score");
+    let currentScore = scoreB.innerHTML;
+    localStorage.setItem("userScore", currentScore); 
     window.location.href = "summary.html";
 }
+
+clickTerminate = () => {
+    let answer = window.confirm("End Game?");
+    if (answer){
+        terminateGame();
+    }
+}
+
 hideTileColors = () => {
     let gameDiv = document.getElementById("play-state");
     let buttons = gameDiv.querySelectorAll("button");
@@ -49,6 +59,16 @@ hideTileColors = () => {
             setTimeout(flipButton(buttons[i], "#B2D9EA", 180), 500);
         }
     }
+    reset_animation();
+}
+
+wipeTileColors = () => {
+    let gameDiv = document.getElementById("play-state");
+    let buttons = gameDiv.querySelectorAll("button");
+    for (i = 0; i < buttons.length; i++){
+            setTimeout(flipButton(buttons[i], "white", 0), 500);
+        }
+    reset_animation();
 }
 
 showCorrectTile = () => {
@@ -60,12 +80,14 @@ showCorrectTile = () => {
             correctButtons.push[buttons[i]];
         }
     }
-    
+    reset_animation();
 }
 
 
 
 function onClick(){
+    let myAudio = new Audio('./audio/click.wav');
+    myAudio.play();
     let content = parseInt(this.innerHTML);
     let color = "";
     if(content>=0){
@@ -97,25 +119,32 @@ flipButton= (buttonObject, color, degrees) => {
     buttonObject.style.transitionDuration = "0.5s";
     buttonObject.style.color = color;
     buttonObject.style.background = color;
+    reset_animation();
 }
 
 function clearScreen(){
     let div = document.getElementById("play-state");
     div.innerHTML = "";
+    
 }
 
 function checkGameCondition(totalClicks){
     if(correctClicks == totalClicks){
         bonusScore(totalClicks);
         nextLevel += 1;
+        if(nextLevel>10){
+            nextLevel = 10;
+        }
         generateLevel(levels[nextLevel]);
         
     }
     if(currentClicks == totalClicks && correctClicks != totalClicks){
+        
         if(nextLevel > 0){
             nextLevel -= 1;
         }
-        generateLevel(levels[nextLevel]);
+        setTimeout(generateLevel(levels[nextLevel]),1000);
+        
     }
     
 }
@@ -138,8 +167,8 @@ parentWidth= (divInput) => {
 
 function generateButtons(){
     let tileColor = "#B2D9EA";
-    let width =  parentWidth("play-state");
-    let buttonSize = width/16;
+    let width =  window.innerHeight;
+    let buttonSize = width/10;
     shuffle(buttonsArray);
     console.log("length" + buttonsArray.length);
     let mod = Math.sqrt(buttonsArray.length);
@@ -162,14 +191,12 @@ function generateButtons(){
         button.style.background = tileColor;
         button.addEventListener("click",onClick);
         gameDiv.appendChild(button);
-        
     }
     setTimeout (function(){
         gameDiv.style.transform = 'rotate(90deg)';
         gameDiv.style.transition = '.2s';
         hideTileColors();
         }, 1000);
-    
 }
 
 shuffle = (array) =>{
@@ -181,8 +208,12 @@ shuffle = (array) =>{
     }
 }
 
+
 function generateLevel(level){
+    
     clearScreen();
+    let myAudio = new Audio('./audio/error.mp3');
+    myAudio.play();
     correctClicks = 0;
     currentClicks = 0;
     totalClicks = level.win_condition;
@@ -196,8 +227,9 @@ function generateLevel(level){
         console.log("button" + i + "created");
     }
     generateButtons();
-    setTimeout(showCorrectTile, 200);
+    showCorrectTile();
     displayBorders();
+    reset_animation();
 }
 
 displayScore= (score)=>{
@@ -218,6 +250,7 @@ updateScore= (score, color)=>{
     }
 }
 
+
 fadeInOut= (object) => {
     object.style.visibility = "visible";
     setTimeout(function(){
@@ -229,6 +262,10 @@ function displayBorders (){
     document.getElementById("terminate").style.display = "block";
     document.getElementById("play-state").style.visibility = "visible";
 }
+function reset_animation() {
+    var el = document.getElementById('gameButtons');
+    el.style.animation = 'none';
+  }
 
 function initiateGame(){
     let score = 0;
@@ -237,5 +274,5 @@ function initiateGame(){
     startDiv.style.display = "none";
     generateLevel(levels[nextLevel]);
     let terminateButton = document.getElementById("terminate");
-    terminateButton.addEventListener("click",terminateGame);
+    terminateButton.addEventListener("click",clickTerminate);
 }

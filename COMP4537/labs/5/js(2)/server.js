@@ -16,23 +16,20 @@ const client = new Client({
 client.connect();
 
 
-app.get("/getdef/:word", (req,res) =>{
-    const word = req.params.word;
-    console.log(word);
-    client.query("SELECT * FROM definitions", (err, result) =>{
+app.get("/getToDos/:user", (req,res) =>{
+    const user = req.params.user;
+    client.query("SELECT * FROM todosDatabase where user =" +user, (err, result) =>{
         if (err) throw err;
         console.log(result.rows);
 
-    for (resultword of result.rows) {
-        if (resultword.word === word) {
-            res.json(resultword.definition);
-            console.log('matches word');
-            return resultword.definition;
+    for (resultData of result.rows) {
+        if (resultData.user === user) {
+            res.json(resultData.item);
+            return resultData.item;
         }
     }
 
-    // Sending 404 when not found something is a good practice
-    res.status(404).send('Word not found');
+    res.status(404).send('User not found');
     })
 })
 

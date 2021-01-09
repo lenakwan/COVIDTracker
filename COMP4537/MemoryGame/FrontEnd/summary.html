@@ -18,17 +18,39 @@
         </div>
         
             <div id ="wrapper" class="container">
-                
+                <div class="row">
+                    <button id = "restart" class="col col-med">Restart</button>
+                </div>
+                <h1 id = "end">GAME OVER</h1>
+                <h2 id = "score-data"></h2>
+                <div id = "input">
+                    <label for="name">Name:</label>
+                    <input type="text" id="playersname" name="name"><br/>
+                    <button type="submit" id="submitted">Submit</button>
+                </div>
                 <div id = "state-container" class="container-table">
-                    <h1 id = "end">GAME OVER</h1>
-                    <div id = "high-scores" class = "row">
+                    
+                    <div class="row" id="database">
+                        <div class="col-6 col-sm-3" id="usernames">
+                        <p>Name</p>
+                        <br/>
+                        <div id = "playname"></div>
                         
-                    </div>
+                        </div>
+                      
+                        <!-- Force next columns to break to new line -->
+                        <div class="w-100"></div>
+                      
+                        <div class="col-6 col-sm-9">
+                            <p>Score of Top Five Players (postgresql db)</p></div>
+                            <div id = "scorename"></div>
+                      </div>
                   
                     
                 </div>
             </div>
         
         </div>
+        <script src="javascript/summary.js"></script>
 </body>
 </html>
